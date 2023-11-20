@@ -106,6 +106,184 @@
 // Destructuring Objects
 ////////////////////////////////////////////////////////////////////////////
 
+// const restaurant = {
+//   name: 'Classico Italiano',
+//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+//   openingHours: {
+//     thu: {
+//       open: 12,
+//       close: 22,
+//     },
+//     fri: {
+//       open: 11,
+//       close: 23,
+//     },
+//     sat: {
+//       open: 0, // Open 24 hours
+//       close: 24,
+//     },
+//   },
+
+//   order: function (starterIndex, mainIndex) {
+//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   },
+
+//   // orderDelivery: function (obj) {
+//   //   console.log(obj);
+//   // },
+
+//   //   Because now, here in the function arguments
+//   // we can actually do destructuring right away.
+
+//   //   We did not pass four arguments.
+//   // It's really just one argument, one object.
+//   // Then here in the function,
+//   // as we receive that object, we do immediately destructuring.
+//   // And so that's why these names here
+//   // need to be exactly the names that we have down here
+//   // in the object.
+//   // But what's great about this,
+//   // is that here the properties in the index
+//   // don't have to match the order
+//   // in which we do destructuring up here.
+//   // And so that makes it really easy
+//   // for the user of this function
+//   // to specify basically the arguments
+
+//   //   which is these default values.
+//   // So we can now use this to basically set defaults here
+//   orderDelivery: function ({
+//     starterIndex = 1,
+//     mainIndex = 0,
+//     time = '20:00',
+//     address,
+//   }) {
+//     console.log(
+//       `Order recieved! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+//     );
+//   },
+// };
+
+// restaurant.orderDelivery({
+//   time: '22:30',
+//   address: 'Via del Sole, 21',
+//   mainIndex: 2,
+//   starterIndex: 2,
+// });
+
+// // But then the rest will be taken from the default values
+// restaurant.orderDelivery({
+//   address: 'Via del Sole, 21',
+//   starterIndex: 2,
+// });
+
+// // So to destructure objects we use the curly braces.
+// // Now, since in an object,
+// // the order of elements does not matter,
+// // we don't need to manually skip elements
+// // like we did in an array.
+
+// const { name, openingHours, categories } = restaurant;
+// console.log(name, openingHours, categories);
+
+// // this is an extremely useful addition to the language.
+// // Especially when we deal with the result of an API call,
+// // which basically means to get data
+// // from another web application,
+// // like weather data or data about movies
+// // or something like that.
+// // And this data
+// // usually comes in the form of objects basically.
+// // And then destructuring is really a lifesaver.
+// // It allows us to write a lot less code.
+// // So this is really used in modern applications.
+
+// // But now what if we wanted the variable names to be different
+// // from the property names?
+// // Well, we can do it like this.
+// // that these three are actually the exact same name,
+// // but we were able to give them new variable names.
+// // Which again that's gonna be immensely helpful
+// // when dealing with third-party data.
+// const {
+//   name: restaurantName,
+//   openingHours: hours,
+//   categories: tags,
+// } = restaurant;
+// console.log(restaurantName, hours, tags);
+
+// // It can be really useful to have default values
+// // for the case that we're trying to read a property
+// // that does not exist on the object.
+// // So usually then we get an undefined.
+
+// // So starterMenu, and we want to call it just starters.
+// // And we also want to give it a default value
+// // in case it doesn't exist.
+// // So in this case, just an empty array.
+// // Now, in this case, it actually does exist.
+// // So starterMenu does exist.
+// // And so therefore this default value will not apply,
+// // but it should apply to menu.
+// // Because as I was just saying,
+// // there is no property on the restaurant object called menu.
+
+// //Defaulth values
+// // And without the default value, we would then get undefined,
+// const { menu = [], starterMenu: starters = [] } = restaurant;
+// console.log(menu, starters);
+
+// //Mutating variables
+// let a = 111;
+// let b = 999;
+// const obj = { a: 23, b: 7, c: 14 };
+
+// // Now we cannot say const like a, b,
+// // because a and b are already declared up here, right?
+// // We can also not do let,
+// // because again, that would create new variables
+// // and we already have them there, okay?
+// //const {a,b }
+// //let {a,b }
+
+// // But now as we save this, watch what happens.
+// // And so we get a syntax error.
+// // And the reason for that
+// // is that when we start a line with a curly brace like this,
+// // then JavaScript expects a code block, all right?
+// // And since we cannot assign anything to a code block,
+// // like we did here with the equal sign,
+// // then we get this error
+// // unexpected token with the equal there.
+// // { a, b } = obj;
+
+// // So to solve this here,
+// // the trick is to wrap all of this into a parenthesis.
+// ({ a, b } = obj);
+// console.log(a, b);
+
+// //Nested Objects
+// // const { fri } = openingHours;
+// // console.log(fri);
+
+// const {
+//   fri: { open, close },
+// } = openingHours;
+// console.log(open, close);
+
+// const {
+//   fri: { open: o, close: c },
+// } = openingHours;
+// console.log(o, c);
+
+/////////////////////////////////////////////////////////////////////////////
+// The Spread Operator (...)
+/////////////////////////////////////////////////////////////////////////////
+
 const restaurant = {
   name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -132,30 +310,6 @@ const restaurant = {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
-  // orderDelivery: function (obj) {
-  //   console.log(obj);
-  // },
-
-  //   Because now, here in the function arguments
-  // we can actually do destructuring right away.
-
-  //   We did not pass four arguments.
-  // It's really just one argument, one object.
-  // Then here in the function,
-  // as we receive that object, we do immediately destructuring.
-  // And so that's why these names here
-  // need to be exactly the names that we have down here
-  // in the object.
-  // But what's great about this,
-  // is that here the properties in the index
-  // don't have to match the order
-  // in which we do destructuring up here.
-  // And so that makes it really easy
-  // for the user of this function
-  // to specify basically the arguments
-
-  //   which is these default values.
-  // So we can now use this to basically set defaults here
   orderDelivery: function ({
     starterIndex = 1,
     mainIndex = 0,
@@ -166,116 +320,120 @@ const restaurant = {
       `Order recieved! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+  },
 };
 
-restaurant.orderDelivery({
-  time: '22:30',
-  address: 'Via del Sole, 21',
-  mainIndex: 2,
-  starterIndex: 2,
-});
+const arr = [7, 8, 9];
+const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+console.log(badNewArr);
 
-// But then the rest will be taken from the default values
-restaurant.orderDelivery({
-  address: 'Via del Sole, 21',
-  starterIndex: 2,
-});
+// So what the spread operator does
+// is to basically take all the values
+// out of this arr. array,
+// and then write them individually
+// as if we wrote seven, eight, nine here manually.
+const newArr = [1, 2, ...arr];
+console.log(newArr);
 
-// So to destructure objects we use the curly braces.
-// Now, since in an object,
-// the order of elements does not matter,
-// we don't need to manually skip elements
-// like we did in an array.
+// whenever we write an array literal
+// like we did up here.
+// So that's the first situation in which
+// it's very useful to expand an array.
+// And the second situation is
+// when we pass arguments into functions.
 
-const { name, openingHours, categories } = restaurant;
-console.log(name, openingHours, categories);
+// But if we use the spread operator
+// to expand the new array,
+// then see what happens then.
+// So now it logged the individual elements of the array.
+console.log(...newArr);
 
-// this is an extremely useful addition to the language.
-// Especially when we deal with the result of an API call,
-// which basically means to get data
-// from another web application,
-// like weather data or data about movies
-// or something like that.
-// And this data
-// usually comes in the form of objects basically.
-// And then destructuring is really a lifesaver.
-// It allows us to write a lot less code.
-// So this is really used in modern applications.
+// So now it logged the individual elements of the array.
+// So this would be the same as writing
+// one, two, seven, eight, nine individually.
+// So once again, whenever we need the elements
+// of an array individually,
+console.log(1, 2, 7, 8, 9);
 
-// But now what if we wanted the variable names to be different
-// from the property names?
-// Well, we can do it like this.
-// that these three are actually the exact same name,
-// but we were able to give them new variable names.
-// Which again that's gonna be immensely helpful
-// when dealing with third-party data.
-const {
-  name: restaurantName,
-  openingHours: hours,
-  categories: tags,
-} = restaurant;
-console.log(restaurantName, hours, tags);
+const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+console.log(newMenu);
 
-// It can be really useful to have default values
-// for the case that we're trying to read a property
-// that does not exist on the object.
-// So usually then we get an undefined.
+// Now you might have noticed that the spread operator
+// is actually a bit similar to destructuring,
+// because it also helps us get elements out of arrays.
+// Now, the big difference is that the spread operator
+// takes all the elements from the array
+// and it also doesn't create new variables.
+// And as a consequence, we can only use it
+// in places where we would otherwise
+// write values separated by commas.
 
-// So starterMenu, and we want to call it just starters.
-// And we also want to give it a default value
-// in case it doesn't exist.
-// So in this case, just an empty array.
-// Now, in this case, it actually does exist.
-// So starterMenu does exist.
-// And so therefore this default value will not apply,
-// but it should apply to menu.
-// Because as I was just saying,
-// there is no property on the restaurant object called menu.
+//Copy array
+const mainMenuCopy = [...restaurant.mainMenu];
 
-//Defaulth values
-// And without the default value, we would then get undefined,
-const { menu = [], starterMenu: starters = [] } = restaurant;
-console.log(menu, starters);
+//Join 2 arrays
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menu);
 
-//Mutating variables
-let a = 111;
-let b = 999;
-const obj = { a: 23, b: 7, c: 14 };
+// All right, so I told you that the spread operator
+// works on arrays, but that's not entirely true,
+// because actually, the spread operator
+// works on all so-called iterables.
 
-// Now we cannot say const like a, b,
-// because a and b are already declared up here, right?
-// We can also not do let,
-// because again, that would create new variables
-// and we already have them there, okay?
-//const {a,b }
-//let {a,b }
+// but for now, just know that iterables
+// are things like all arrays, strings, maps, or sets,
+// but not objects.
 
-// But now as we save this, watch what happens.
-// And so we get a syntax error.
-// And the reason for that
-// is that when we start a line with a curly brace like this,
-// then JavaScript expects a code block, all right?
-// And since we cannot assign anything to a code block,
-// like we did here with the equal sign,
-// then we get this error
-// unexpected token with the equal there.
-// { a, b } = obj;
+////Iterables: arrays, strings maps, sets. Not objects
+const str = 'Elmar';
+const letters = [...str, ' ', 'A.'];
+console.log(letters);
+console.log(...str);
 
-// So to solve this here,
-// the trick is to wrap all of this into a parenthesis.
-({ a, b } = obj);
-console.log(a, b);
+// So here, this is not gonna work.
+// And that's because this is not a place
+// that expects multiple values separated by a comma.
+// So you see unexpected token, all right?
+// So again, multiple values separated by a comma
+// are usually only expected
+// when we pass arguments into a function,
+// or when we build a new array.
+// So take note of that,
+//////////////////////////////////
+// console.log(`${...arr} Angao`);
 
-//Nested Objects
-// const { fri } = openingHours;
-// console.log(fri);
+// Let's now actually write our own function
+// that accepts multiple arguments
+// and then use the spread operator
+// to actually pass those arguments.
 
-const {
-  fri: { open, close },
-} = openingHours;
-console.log(open, close);
+//Real-world example
+const ingredients = [
+  // prompt("Let's make pasta! Ingredient 1?"),
+  // prompt('Ingredient 2?'),
+  // prompt('Ingredient 2?'),
+];
 
-const {
-  fri: { open: o, close: c },
-} = openingHours;
-console.log(o, c);
+console.log(ingredients);
+
+restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
+
+//best solution and moern solution
+// more modern ES6 syntax here.
+restaurant.orderPasta(...ingredients);
+
+// since ES 2018, the spread operator
+// actually also works on objects,
+// even though objects are not iterables.
+
+//Objects
+const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
+console.log(newRestaurant);
+
+const restuarantCopy = { ...restaurant };
+restuarantCopy.name = 'Ristorante Roma';
+console.log(restuarantCopy.name);
+console.log(restaurant.name);
