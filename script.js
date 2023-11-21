@@ -766,6 +766,73 @@
 // The Nullish Coalescing Operator (??)
 ///////////////////////////////////////////////////////////////////////
 
+// const restaurant = {
+//   name: 'Classico Italiano',
+//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+//   openingHours: {
+//     thu: {
+//       open: 12,
+//       close: 22,
+//     },
+//     fri: {
+//       open: 11,
+//       close: 23,
+//     },
+//     sat: {
+//       open: 0, // Open 24 hours
+//       close: 24,
+//     },
+//   },
+
+//   order: function (starterIndex, mainIndex) {
+//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   },
+
+//   orderDelivery: function ({
+//     starterIndex = 1,
+//     mainIndex = 0,
+//     time = '20:00',
+//     address,
+//   }) {
+//     console.log(
+//       `Order recieved! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+//     );
+//   },
+
+//   orderPasta: function (ing1, ing2, ing3) {
+//     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+//   },
+
+//   orderPizza: function (mainIngredients, ...otherIngrdients) {
+//     console.log(mainIngredients);
+//     console.log(otherIngrdients);
+//   },
+// };
+
+// // restaurant.numGuests = 0;
+// const guest = restaurant.numGuests || 10;
+// console.log(guest);
+
+// // and assign it to guests because zero is a falsy value now,
+// // and so therefore, we go to the second operand.
+// // However, fortunately for us,
+// // there is a very good solution to this,
+// // and that's the new operator with the very weird name
+// // of nullish coalescing operator.
+// // It's an operator that was introduced in ES2020,
+
+// // Nullish: null and undefined (NOT include 0 or '')
+// const guestCorrect = restaurant.numGuests ?? 10;
+// console.log(guestCorrect);
+
+/////////////////////////////////////////////////////////////////
+// Logical Assignment Operators
+/////////////////////////////////////////////////////////////////
+
 const restaurant = {
   name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -813,18 +880,40 @@ const restaurant = {
   },
 };
 
-// restaurant.numGuests = 0;
-const guest = restaurant.numGuests || 10;
-console.log(guest);
+// are three new so-called logical assignment operators
+// that were introduced in ES 2021.
 
-// and assign it to guests because zero is a falsy value now,
-// and so therefore, we go to the second operand.
-// However, fortunately for us,
-// there is a very good solution to this,
-// and that's the new operator with the very weird name
-// of nullish coalescing operator.
-// It's an operator that was introduced in ES2020,
+const rest1 = {
+  name: 'Capri',
+  // numGuests: 20,
+  numGuests: 0,
+};
 
-// Nullish: null and undefined (NOT include 0 or '')
-const guestCorrect = restaurant.numGuests ?? 10;
-console.log(guestCorrect);
+const rest2 = {
+  name: 'La Piazza',
+  owner: 'Giovanni Rossi',
+};
+
+//OR Assignment Operator
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+// rest1.numGuests ||= 10;
+// rest2.numGuests ||= 10;
+
+// Nullish assignment operator (null or undefined)
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+
+//and Assignment Operator
+
+// And so basically, what the logical
+// and assignment operator does
+// is to assign a value to a variable
+// if it is currently truthy.
+// rest1.owner = rest1.owner && '<ANONYMOUS>';
+// rest2.owner = rest2.owner && '<ANONYMOUS>';
+rest1.owner &&= '<ANONYMOUS>';
+rest2.owner &&= '<ANONYMOUS>';
+
+console.log(rest1);
+console.log(rest2);
