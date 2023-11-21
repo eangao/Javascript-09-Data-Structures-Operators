@@ -923,118 +923,245 @@
 //  Coding Challenge #1
 //////////////////////////////////////////////////////////////////////////
 
-//  We're building a football betting app (soccer for my American friends �)!
-//  Suppose we get data from a web service about a certain game ('game' variable on
-//  next page). In this challenge we're gonna work with that data.
-//  Your tasks:
+// //  We're building a football betting app (soccer for my American friends �)!
+// //  Suppose we get data from a web service about a certain game ('game' variable on
+// //  next page). In this challenge we're gonna work with that data.
+// //  Your tasks:
 
-//  1. Create one player array for each team (variables 'players1' and
-//  'players2')
+// //  1. Create one player array for each team (variables 'players1' and
+// //  'players2')
 
-//  2. The first player in any player array is the goalkeeper and the others are field
-//  players. For Bayern Munich (team 1) create one variable ('gk') with the
-//  goalkeeper's name, and one array ('fieldPlayers') with all the remaining 10
-//  field players
+// //  2. The first player in any player array is the goalkeeper and the others are field
+// //  players. For Bayern Munich (team 1) create one variable ('gk') with the
+// //  goalkeeper's name, and one array ('fieldPlayers') with all the remaining 10
+// //  field players
 
-//  3. Create an array 'allPlayers' containing all players of both teams (22
-//  players)
+// //  3. Create an array 'allPlayers' containing all players of both teams (22
+// //  players)
 
-//  4. During the game, Bayern Munich (team 1) used 3 substitute players. So create a
-//  new array ('players1Final') containing all the original team1 players plus
-//  'Thiago', 'Coutinho' and 'Perisic'
+// //  4. During the game, Bayern Munich (team 1) used 3 substitute players. So create a
+// //  new array ('players1Final') containing all the original team1 players plus
+// //  'Thiago', 'Coutinho' and 'Perisic'
 
-//  5. Based on the game.odds object, create one variable for each odd (called
-//  'team1', 'draw' and 'team2')
+// //  5. Based on the game.odds object, create one variable for each odd (called
+// //  'team1', 'draw' and 'team2')
 
-//  6. Write a function ('printGoals') that receives an arbitrary number of player
-//  names (not an array) and prints each of them to the console, along with the
-//  number of goals that were scored in total (number of player names passed in)
+// //  6. Write a function ('printGoals') that receives an arbitrary number of player
+// //  names (not an array) and prints each of them to the console, along with the
+// //  number of goals that were scored in total (number of player names passed in)
 
-//  7. The team with the lower odd is more likely to win. Print to the console which
-//  team is more likely to win, without using an if/else statement or the ternary
-//  operator.
+// //  7. The team with the lower odd is more likely to win. Print to the console which
+// //  team is more likely to win, without using an if/else statement or the ternary
+// //  operator.
 
-//  Test data for 6.: First, use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'.
+// //  Test data for 6.: First, use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'.
 
-//  Then, call the function again with players from game.scored
-//  GOOD LUCK �
+// //  Then, call the function again with players from game.scored
+// //  GOOD LUCK �
 
-const game = {
-  team1: 'Bayern Munich',
-  team2: 'Borrussia Dortmund',
-  players: [
-    [
-      'Neuer',
-      'Pavard',
-      'Martinez',
-      'Alaba',
-      'Davies',
-      'Kimmich',
-      'Goretzka',
-      'Coman',
-      'Muller',
-      'Gnarby',
-      'Lewandowski',
-    ],
-    [
-      'Burki',
-      'Schulz',
-      'Hummels',
-      'Akanji',
-      'Hakimi',
-      'Weigl',
-      'Witsel',
-      'Hazard',
-      'Brandt',
-      'Sancho',
-      'Gotze',
-    ],
-  ],
-  score: '4:0',
-  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-  date: 'Nov 9th, 2037',
-  odds: {
-    team1: 1.33,
-    x: 3.25,
-    team2: 6.5,
+// const game = {
+//   team1: 'Bayern Munich',
+//   team2: 'Borrussia Dortmund',
+//   players: [
+//     [
+//       'Neuer',
+//       'Pavard',
+//       'Martinez',
+//       'Alaba',
+//       'Davies',
+//       'Kimmich',
+//       'Goretzka',
+//       'Coman',
+//       'Muller',
+//       'Gnarby',
+//       'Lewandowski',
+//     ],
+//     [
+//       'Burki',
+//       'Schulz',
+//       'Hummels',
+//       'Akanji',
+//       'Hakimi',
+//       'Weigl',
+//       'Witsel',
+//       'Hazard',
+//       'Brandt',
+//       'Sancho',
+//       'Gotze',
+//     ],
+//   ],
+//   score: '4:0',
+//   scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+//   date: 'Nov 9th, 2037',
+//   odds: {
+//     team1: 1.33,
+//     x: 3.25,
+//     team2: 6.5,
+//   },
+// };
+
+// //1 - destructuring  game.players
+// const [players1, players2] = game.players;
+// console.log(players1, players2);
+
+// //2 - destructuring - rest syntax
+// const [gk, ...fieldPlayers] = players1;
+// console.log(gk, fieldPlayers);
+
+// //3 - spread operator
+// const allPlayers = [...players1, ...players2];
+// console.log(allPlayers);
+
+// //4 - adding element on array
+// const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+// console.log(players1Final);
+
+// // 5
+// // const { team1, x: draw, team2 } = game.odds;
+// const {
+//   odds: { team1, x: draw, team2 },
+// } = game;
+// console.log(team1, draw, team2);
+
+// // 6
+
+// const printGoals = function (...players) {
+//   console.log(players);
+//   console.log(`${players.length} goals were scored `);
+// };
+
+// //  Test data for 6.: First, use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'.
+// // printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
+// // printGoals('Davies', 'Muller');
+// printGoals(...game.scored); // using the spread operator to pass an array of arguments
+
+// // 7
+// team1 < team2 && console.log('Team 1 is more likely to win');
+// team1 > team2 && console.log('Team 2 is more likely to win');
+
+//////////////////////////////////////////////////////////////////
+// Looping Arrays: The for-of Loop
+//////////////////////////////////////////////////////////////////
+
+const restaurant = {
+  name: 'Classico Italiano',
+  location: 'Via Angelo Tavanti 23, Firenze, Italy',
+  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+  openingHours: {
+    thu: {
+      open: 12,
+      close: 22,
+    },
+    fri: {
+      open: 11,
+      close: 23,
+    },
+    sat: {
+      open: 0, // Open 24 hours
+      close: 24,
+    },
+  },
+
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+
+  orderDelivery: function ({
+    starterIndex = 1,
+    mainIndex = 0,
+    time = '20:00',
+    address,
+  }) {
+    console.log(
+      `Order recieved! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
+  },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+  },
+
+  orderPizza: function (mainIngredients, ...otherIngrdients) {
+    console.log(mainIngredients);
+    console.log(otherIngrdients);
   },
 };
 
-//1 - destructuring  game.players
-const [players1, players2] = game.players;
-console.log(players1, players2);
+// Let's now talk about a new way of looping over arrays,
+// which was introduced in ES6.
+// And that's the for-of loop.
 
-//2 - destructuring - rest syntax
-const [gk, ...fieldPlayers] = players1;
-console.log(gk, fieldPlayers);
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
-//3 - spread operator
-const allPlayers = [...players1, ...players2];
-console.log(allPlayers);
+for (const item of menu) console.log(item);
 
-//4 - adding element on array
-const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
-console.log(players1Final);
+// but it's a really nice level of obstructing
+// over the regular for loop.
+// So we can do the same thing with this one,
+// but without having to worry about
+// all the underlying details
+// such as counters and conditions.
 
-// 5
-// const { team1, x: draw, team2 } = game.odds;
-const {
-  odds: { team1, x: draw, team2 },
-} = game;
-console.log(team1, draw, team2);
+// What's also great about the for-of loop,
+// is that we can still use the continue and break keywords.
 
-// 6
+// But now what if we also wanted the current index
+// and not just the current element?
+// Well, in the for-of loop,
+// it's actually a bit of a pain
+// when we need that index,
+// because originally the for-of loop
+// was really just meant to give you the current element.
+// However, you can get both
+// and you will have to do it like this.
+for (const item of menu.entries()) {
+  console.log(item);
+}
 
-const printGoals = function (...players) {
-  console.log(players);
-  console.log(`${players.length} goals were scored `);
-};
+for (const item of menu.entries()) {
+  console.log(`${item[0] + 1}: ${item[1]}`); // old school way
+}
 
-//  Test data for 6.: First, use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'.
-// printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
-// printGoals('Davies', 'Muller');
-printGoals(...game.scored); // using the spread operator to pass an array of arguments
+// All we have to do is to use the de-structuring assignment
+// and then create the two variables that we want.
+// So let's call it i and el for element.
+// So here we can use i and here element.
+// So that's checked out and indeed it works the same.
+// And so once again these structuring
+// made our lives a little bit easier here.
+// So it's a really great addition
+// to the JavaScript language here once again.
+// And the same is of course true
+// for the for-of loop itself,
+// which also makes it a lot easier
+// to loop over arrays.
 
-// 7
-team1 < team2 && console.log('Team 1 is more likely to win');
-team1 > team2 && console.log('Team 2 is more likely to win');
+for (const [i, el] of menu.entries()) {
+  console.log(`${i + 1}: ${el}`);
+}
+
+// what this mysterious menu dot entries actually is.
+// So menu dot entries,
+// and so here we get this weird array iterator.
+// And so that's not really helpful,
+// but we will learn about iterators
+// by the end of the course.
+
+// console.log(menu.entries());
+
+// But if we want to take a look at this,
+// we need to essentially expand this here,
+// using the spread operator
+// and then create a new array based out of that.
+// So again this is really just to take a look
+// at what menu dot entries actually is.
+// And so we see that it is basically an array,
+// which in each position contains a new array,
+// which contains the element,
+// so the element entity index number of that element
+// in the original array.
+
+// console.log([...menu.entries()]);
