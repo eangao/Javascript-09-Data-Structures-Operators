@@ -284,6 +284,164 @@
 // The Spread Operator (...)
 /////////////////////////////////////////////////////////////////////////////
 
+// const restaurant = {
+//   name: 'Classico Italiano',
+//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+//   openingHours: {
+//     thu: {
+//       open: 12,
+//       close: 22,
+//     },
+//     fri: {
+//       open: 11,
+//       close: 23,
+//     },
+//     sat: {
+//       open: 0, // Open 24 hours
+//       close: 24,
+//     },
+//   },
+
+//   order: function (starterIndex, mainIndex) {
+//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   },
+
+//   orderDelivery: function ({
+//     starterIndex = 1,
+//     mainIndex = 0,
+//     time = '20:00',
+//     address,
+//   }) {
+//     console.log(
+//       `Order recieved! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+//     );
+//   },
+
+//   orderPasta: function (ing1, ing2, ing3) {
+//     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+//   },
+// };
+
+// const arr = [7, 8, 9];
+// const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+// console.log(badNewArr);
+
+// // So what the spread operator does
+// // is to basically take all the values
+// // out of this arr. array,
+// // and then write them individually
+// // as if we wrote seven, eight, nine here manually.
+// const newArr = [1, 2, ...arr];
+// console.log(newArr);
+
+// // whenever we write an array literal
+// // like we did up here.
+// // So that's the first situation in which
+// // it's very useful to expand an array.
+// // And the second situation is
+// // when we pass arguments into functions.
+
+// // But if we use the spread operator
+// // to expand the new array,
+// // then see what happens then.
+// // So now it logged the individual elements of the array.
+// console.log(...newArr);
+
+// // So now it logged the individual elements of the array.
+// // So this would be the same as writing
+// // one, two, seven, eight, nine individually.
+// // So once again, whenever we need the elements
+// // of an array individually,
+// console.log(1, 2, 7, 8, 9);
+
+// const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+// console.log(newMenu);
+
+// // Now you might have noticed that the spread operator
+// // is actually a bit similar to destructuring,
+// // because it also helps us get elements out of arrays.
+// // Now, the big difference is that the spread operator
+// // takes all the elements from the array
+// // and it also doesn't create new variables.
+// // And as a consequence, we can only use it
+// // in places where we would otherwise
+// // write values separated by commas.
+
+// //Copy array
+// const mainMenuCopy = [...restaurant.mainMenu];
+
+// //Join 2 arrays
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// console.log(menu);
+
+// // All right, so I told you that the spread operator
+// // works on arrays, but that's not entirely true,
+// // because actually, the spread operator
+// // works on all so-called iterables.
+
+// // but for now, just know that iterables
+// // are things like all arrays, strings, maps, or sets,
+// // but not objects.
+
+// ////Iterables: arrays, strings maps, sets. Not objects
+// const str = 'Elmar';
+// const letters = [...str, ' ', 'A.'];
+// console.log(letters);
+// console.log(...str);
+
+// // So here, this is not gonna work.
+// // And that's because this is not a place
+// // that expects multiple values separated by a comma.
+// // So you see unexpected token, all right?
+// // So again, multiple values separated by a comma
+// // are usually only expected
+// // when we pass arguments into a function,
+// // or when we build a new array.
+// // So take note of that,
+// //////////////////////////////////
+// // console.log(`${...arr} Angao`);
+
+// // Let's now actually write our own function
+// // that accepts multiple arguments
+// // and then use the spread operator
+// // to actually pass those arguments.
+
+// //Real-world example
+// const ingredients = [
+//   // prompt("Let's make pasta! Ingredient 1?"),
+//   // prompt('Ingredient 2?'),
+//   // prompt('Ingredient 2?'),
+// ];
+
+// console.log(ingredients);
+
+// restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
+
+// //best solution and moern solution
+// // more modern ES6 syntax here.
+// restaurant.orderPasta(...ingredients);
+
+// // since ES 2018, the spread operator
+// // actually also works on objects,
+// // even though objects are not iterables.
+
+// //Objects
+// const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
+// console.log(newRestaurant);
+
+// const restuarantCopy = { ...restaurant };
+// restuarantCopy.name = 'Ristorante Roma';
+// console.log(restuarantCopy.name);
+// console.log(restaurant.name);
+
+////////////////////////////////////////////////////////////////////////////
+// Rest Pattern and Parameters
+////////////////////////////////////////////////////////////////////////////
+
 const restaurant = {
   name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -324,116 +482,123 @@ const restaurant = {
   orderPasta: function (ing1, ing2, ing3) {
     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
   },
+
+  orderPizza: function (mainIngredients, ...otherIngrdients) {
+    console.log(mainIngredients);
+    console.log(otherIngrdients);
+  },
 };
 
-const arr = [7, 8, 9];
-const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
-console.log(badNewArr);
+// Moving on let's now talk about the rest pattern
+// and also rest parameters
+// and the rest pattern looks exactly like the spread operator.
+// So it has the same syntax with the three dots
+// but it actually does the opposite of the spread operator.
 
-// So what the spread operator does
-// is to basically take all the values
-// out of this arr. array,
-// and then write them individually
-// as if we wrote seven, eight, nine here manually.
-const newArr = [1, 2, ...arr];
-console.log(newArr);
+// But let me explain, so remember
+// that we used the spread operator to build new arrays
+// or to pass multiple values into a function.
+// So those are the two use cases of the spread operator
+// and in both cases, we use the spread operator
+// to expand an array into individual elements.
+// Now, the rest pattern uses the exact same syntax
+// however, to collect multiple elements
+// and condense them into an array.
+// so that's really the opposite of spread
+// The spread operator is to unpack an array
+// while rest is to pack elements into an array
 
-// whenever we write an array literal
-// like we did up here.
-// So that's the first situation in which
-// it's very useful to expand an array.
-// And the second situation is
-// when we pass arguments into functions.
+//1 Destructuring
 
-// But if we use the spread operator
-// to expand the new array,
-// then see what happens then.
-// So now it logged the individual elements of the array.
-console.log(...newArr);
+//SPREAD, becuase on RIGHT side of =
+const arr = [1, 2, ...[3, 4]];
 
-// So now it logged the individual elements of the array.
-// So this would be the same as writing
-// one, two, seven, eight, nine individually.
-// So once again, whenever we need the elements
-// of an array individually,
-console.log(1, 2, 7, 8, 9);
+//REST, becuase on LEFT side of =
+const [a, b, ...others] = [2, 3, 4, 5];
+console.log(a, b, others);
+// and so it's called rest because it will take
+// the rest of the elements.
+// So the remaining elements of the array
+// and then put them into a new array
+// and in this case, we call this array others.
+// So as I said in the beginning,
+// the rest pattern basically collects
+// the elements that are unused
+// in the destructuring assignment.
 
-const newMenu = [...restaurant.mainMenu, 'Gnocci'];
-console.log(newMenu);
-
-// Now you might have noticed that the spread operator
-// is actually a bit similar to destructuring,
-// because it also helps us get elements out of arrays.
-// Now, the big difference is that the spread operator
-// takes all the elements from the array
-// and it also doesn't create new variables.
-// And as a consequence, we can only use it
-// in places where we would otherwise
-// write values separated by commas.
-
-//Copy array
-const mainMenuCopy = [...restaurant.mainMenu];
-
-//Join 2 arrays
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-console.log(menu);
-
-// All right, so I told you that the spread operator
-// works on arrays, but that's not entirely true,
-// because actually, the spread operator
-// works on all so-called iterables.
-
-// but for now, just know that iterables
-// are things like all arrays, strings, maps, or sets,
-// but not objects.
-
-////Iterables: arrays, strings maps, sets. Not objects
-const str = 'Elmar';
-const letters = [...str, ' ', 'A.'];
-console.log(letters);
-console.log(...str);
-
-// So here, this is not gonna work.
-// And that's because this is not a place
-// that expects multiple values separated by a comma.
-// So you see unexpected token, all right?
-// So again, multiple values separated by a comma
-// are usually only expected
-// when we pass arguments into a function,
-// or when we build a new array.
-// So take note of that,
-//////////////////////////////////
-// console.log(`${...arr} Angao`);
-
-// Let's now actually write our own function
-// that accepts multiple arguments
-// and then use the spread operator
-// to actually pass those arguments.
-
-//Real-world example
-const ingredients = [
-  // prompt("Let's make pasta! Ingredient 1?"),
-  // prompt('Ingredient 2?'),
-  // prompt('Ingredient 2?'),
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
 ];
 
-console.log(ingredients);
-
-restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
-
-//best solution and moern solution
-// more modern ES6 syntax here.
-restaurant.orderPasta(...ingredients);
-
-// since ES 2018, the spread operator
-// actually also works on objects,
-// even though objects are not iterables.
+console.log(pizza, risotto, otherFood);
+// and note here that the rest syntax collects
+// all the array after the last variable.
+// So in this case here risotto
+// so it does not include any skipped elements
+// so it's really just the rest of the elements
+// and yeah again, as I said,
+// it does not include any skipped elements
+// and so for that reason,
+// the rest pattern always must be the lest
+// in the destructuring assignment
+// because otherwise how will JavaScript know
+// until when it should collect the rest of the array, right?
 
 //Objects
-const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
-console.log(newRestaurant);
+// and now let's do the same in objects
+// because it also works indeed in objects.
+// So the difference then of course,
+// is that the remaining elements will be collected
+// into a new object and not into a new array.
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
 
-const restuarantCopy = { ...restaurant };
-restuarantCopy.name = 'Ristorante Roma';
-console.log(restuarantCopy.name);
-console.log(restaurant.name);
+//2 Functions
+
+// and so now once again, as I said in the beginning
+// the rest syntax is taking multiple numbers
+// or multiple values and then packs them all into one array.
+// So, once more it is doing the opposite
+// of the spread operator
+// so with the spread operator we expand
+// with the rest syntax we compress
+// so here it's called rest arguments
+const add = function (...numbers) {
+  // console.log(numbers);
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+    console.log(sum);
+  }
+};
+
+add(2, 3);
+add(5, 3, 7, 2);
+add(8, 2, 5, 3, 2, 1, 4);
+
+const x = [23, 5, 7];
+add(...x);
+
+restaurant.orderPizza('mushrooms', 'onion', 'olive', 'spinach');
+restaurant.orderPizza('mushrooms');
+
+// once again the rest parameters serves to collect
+// all of the remaining basically unused parameters
+// that were not used in this parameter.
+// All right, so let's recap
+// after yet another quiet, long lecture here.
+// So, the spread and rests syntax
+// both look exactly the same
+// but they work in opposite ways
+// depending on where they are used.
+// So the spread operator is used
+// where we would otherwise write values, separated by a comma.
+// On the other hand the rest pattern is basically used
+// where we would otherwise write variable names
+// separated by commas.
+// So, again the rest pattern can be used
+// where we would write variable names, separated by commas
+// and not values separated by commas.
+// So it's a subtle distinction, but this is how you know
+// when and where to use spread and rest.
