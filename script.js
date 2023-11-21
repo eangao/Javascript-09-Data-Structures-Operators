@@ -607,6 +607,165 @@
 //  Short Circuiting (&& and ||)
 ////////////////////////////////////////////////////////////////////////////
 
+// const restaurant = {
+//   name: 'Classico Italiano',
+//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+//   openingHours: {
+//     thu: {
+//       open: 12,
+//       close: 22,
+//     },
+//     fri: {
+//       open: 11,
+//       close: 23,
+//     },
+//     sat: {
+//       open: 0, // Open 24 hours
+//       close: 24,
+//     },
+//   },
+
+//   order: function (starterIndex, mainIndex) {
+//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   },
+
+//   orderDelivery: function ({
+//     starterIndex = 1,
+//     mainIndex = 0,
+//     time = '20:00',
+//     address,
+//   }) {
+//     console.log(
+//       `Order recieved! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+//     );
+//   },
+
+//   orderPasta: function (ing1, ing2, ing3) {
+//     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+//   },
+
+//   orderPizza: function (mainIngredients, ...otherIngrdients) {
+//     console.log(mainIngredients);
+//     console.log(otherIngrdients);
+//   },
+// };
+
+// console.log('------- OR -----------');
+// // Use ANY data type, return ANY data type, short-circuitting
+// console.log(3 || 'Elmar');
+// console.log('' || 'Elmar'); //'' falesy value
+// console.log(true || 0);
+// console.log(undefined || null);
+
+// // in the case of the OR operator,
+// // short circuiting means that if the first value
+// // is a truthy value,
+// // it will immediately return that first value.
+// // So that's exactly what we see here
+// // with the three which is a truthy value.
+// // So again, if the first operand is truthy here
+// // in the OR operator,
+// // then the other operand will not even be evaluated.
+// // So JavaScript will not even take a look at it.
+// // And so that's what we mean with short circuiting.
+
+// // And so here we see again that the result
+// // of the OR operator
+// // doesn't have to be a Boolean.
+// // It will simply return the truthy value here.
+
+// // Because remember, in the OR operation,
+// // the result is true,
+// // if at least one operand is true, right?
+// // So if the first operand is already true,
+
+// console.log(undefined || 0 || '' || 'Hello' || 23 || null); //Hello is the truthy value
+
+// // restaurant.numGuests = 0; falsey value
+// // restaurant.numGuests = 23;
+// const guest1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// console.log(guest1);
+
+// const guest2 = restaurant.numGuests || 10;
+// console.log(guest2);
+
+// console.log('------- AND -----------');
+// // So the AND operator is only true
+// // if all the operands are true.
+// // And so, if the first one here is false,
+// // then it means that the entire result of the AND operation
+// // will already be false anyway.
+// // And so there is no need to even look
+// // at any of the other operands.
+
+// console.log(0 && 'Elmar');
+// console.log(7 && 'Elmar');
+
+// console.log('Hello' && 23 && null && 'Elmar');
+
+// // if restaurant dot order, order pizza.
+// // So basically we're checking if this method exists
+// // and then if it does exist,
+// // we want to call it.
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('mushrooms', 'spinach');
+// }
+
+// // about the AND operator,
+// // we can do this in a simpler way.
+// // So we can say restaurant dot order pizza,
+// // and then basically if restaurant dot order pizza
+// // does not exist, so it's undefined,
+// // it will then short circuit the evaluation
+// // and nothing else will happen.
+// // And so that's essentially exactly the same
+// // as this if block here is doing.
+// // All right, but if it does exist.
+// // So if it's a truthy value,
+// // then the second part here will be evaluated.
+// // And so here in this second operand,
+// // we can then call the function.
+// // Okay.
+// // And it's perfectly fine to use this operands,
+// // the second operand` here to call a function.
+// // We can put anything here.
+// // It doesn't just have to be a single value.
+// // Now I'm not saying that you should go ahead
+// // and replace all your if statements
+// // with the AND or the OR operators,
+// // so please definitely don't do that
+// // because it's gonna make your code very hard
+// // to read in the future.
+
+// restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+
+// // But anyway, let's now summarize.
+// // So the OR operator will return the first truthy value
+// // of all the operands,
+// // or simply the last value if all of them are falsy.
+// // So that's what happened here, right?
+// // On the other hand,
+// // the AND operator will return the first falsy value
+// // or the last value if all of them are truthy.
+// // And as for practical applications,
+// // we can use the OR operator to set default values,
+// // and we can use the AND operator
+// // to execute code in the second operand
+// // if the first one is true.
+// // So play around some more with this maybe,
+// // and then let's just move on to the next video
+// // where we will solve this problem that we had here
+// // with this OR operator
+// // and this zero.
+
+///////////////////////////////////////////////////////////////////////
+// The Nullish Coalescing Operator (??)
+///////////////////////////////////////////////////////////////////////
+
 const restaurant = {
   name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -654,110 +813,18 @@ const restaurant = {
   },
 };
 
-console.log('------- OR -----------');
-// Use ANY data type, return ANY data type, short-circuitting
-console.log(3 || 'Elmar');
-console.log('' || 'Elmar'); //'' falesy value
-console.log(true || 0);
-console.log(undefined || null);
+// restaurant.numGuests = 0;
+const guest = restaurant.numGuests || 10;
+console.log(guest);
 
-// in the case of the OR operator,
-// short circuiting means that if the first value
-// is a truthy value,
-// it will immediately return that first value.
-// So that's exactly what we see here
-// with the three which is a truthy value.
-// So again, if the first operand is truthy here
-// in the OR operator,
-// then the other operand will not even be evaluated.
-// So JavaScript will not even take a look at it.
-// And so that's what we mean with short circuiting.
+// and assign it to guests because zero is a falsy value now,
+// and so therefore, we go to the second operand.
+// However, fortunately for us,
+// there is a very good solution to this,
+// and that's the new operator with the very weird name
+// of nullish coalescing operator.
+// It's an operator that was introduced in ES2020,
 
-// And so here we see again that the result
-// of the OR operator
-// doesn't have to be a Boolean.
-// It will simply return the truthy value here.
-
-// Because remember, in the OR operation,
-// the result is true,
-// if at least one operand is true, right?
-// So if the first operand is already true,
-
-console.log(undefined || 0 || '' || 'Hello' || 23 || null); //Hello is the truthy value
-
-// restaurant.numGuests = 0; falsey value
-// restaurant.numGuests = 23;
-const guest1 = restaurant.numGuests ? restaurant.numGuests : 10;
-console.log(guest1);
-
-const guest2 = restaurant.numGuests || 10;
-console.log(guest2);
-
-console.log('------- AND -----------');
-// So the AND operator is only true
-// if all the operands are true.
-// And so, if the first one here is false,
-// then it means that the entire result of the AND operation
-// will already be false anyway.
-// And so there is no need to even look
-// at any of the other operands.
-
-console.log(0 && 'Elmar');
-console.log(7 && 'Elmar');
-
-console.log('Hello' && 23 && null && 'Elmar');
-
-// if restaurant dot order, order pizza.
-// So basically we're checking if this method exists
-// and then if it does exist,
-// we want to call it.
-if (restaurant.orderPizza) {
-  restaurant.orderPizza('mushrooms', 'spinach');
-}
-
-// about the AND operator,
-// we can do this in a simpler way.
-// So we can say restaurant dot order pizza,
-// and then basically if restaurant dot order pizza
-// does not exist, so it's undefined,
-// it will then short circuit the evaluation
-// and nothing else will happen.
-// And so that's essentially exactly the same
-// as this if block here is doing.
-// All right, but if it does exist.
-// So if it's a truthy value,
-// then the second part here will be evaluated.
-// And so here in this second operand,
-// we can then call the function.
-// Okay.
-// And it's perfectly fine to use this operands,
-// the second operand` here to call a function.
-// We can put anything here.
-// It doesn't just have to be a single value.
-// Now I'm not saying that you should go ahead
-// and replace all your if statements
-// with the AND or the OR operators,
-// so please definitely don't do that
-// because it's gonna make your code very hard
-// to read in the future.
-
-restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
-
-// But anyway, let's now summarize.
-// So the OR operator will return the first truthy value
-// of all the operands,
-// or simply the last value if all of them are falsy.
-// So that's what happened here, right?
-// On the other hand,
-// the AND operator will return the first falsy value
-// or the last value if all of them are truthy.
-// And as for practical applications,
-// we can use the OR operator to set default values,
-// and we can use the AND operator
-// to execute code in the second operand
-// if the first one is true.
-// So play around some more with this maybe,
-// and then let's just move on to the next video
-// where we will solve this problem that we had here
-// with this OR operator
-// and this zero.
+// Nullish: null and undefined (NOT include 0 or '')
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
