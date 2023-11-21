@@ -442,6 +442,171 @@
 // Rest Pattern and Parameters
 ////////////////////////////////////////////////////////////////////////////
 
+// const restaurant = {
+//   name: 'Classico Italiano',
+//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+//   openingHours: {
+//     thu: {
+//       open: 12,
+//       close: 22,
+//     },
+//     fri: {
+//       open: 11,
+//       close: 23,
+//     },
+//     sat: {
+//       open: 0, // Open 24 hours
+//       close: 24,
+//     },
+//   },
+
+//   order: function (starterIndex, mainIndex) {
+//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   },
+
+//   orderDelivery: function ({
+//     starterIndex = 1,
+//     mainIndex = 0,
+//     time = '20:00',
+//     address,
+//   }) {
+//     console.log(
+//       `Order recieved! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+//     );
+//   },
+
+//   orderPasta: function (ing1, ing2, ing3) {
+//     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+//   },
+
+//   orderPizza: function (mainIngredients, ...otherIngrdients) {
+//     console.log(mainIngredients);
+//     console.log(otherIngrdients);
+//   },
+// };
+
+// // Moving on let's now talk about the rest pattern
+// // and also rest parameters
+// // and the rest pattern looks exactly like the spread operator.
+// // So it has the same syntax with the three dots
+// // but it actually does the opposite of the spread operator.
+
+// // But let me explain, so remember
+// // that we used the spread operator to build new arrays
+// // or to pass multiple values into a function.
+// // So those are the two use cases of the spread operator
+// // and in both cases, we use the spread operator
+// // to expand an array into individual elements.
+// // Now, the rest pattern uses the exact same syntax
+// // however, to collect multiple elements
+// // and condense them into an array.
+// // so that's really the opposite of spread
+// // The spread operator is to unpack an array
+// // while rest is to pack elements into an array
+
+// //1 Destructuring
+
+// //SPREAD, becuase on RIGHT side of =
+// const arr = [1, 2, ...[3, 4]];
+
+// //REST, becuase on LEFT side of =
+// const [a, b, ...others] = [2, 3, 4, 5];
+// console.log(a, b, others);
+// // and so it's called rest because it will take
+// // the rest of the elements.
+// // So the remaining elements of the array
+// // and then put them into a new array
+// // and in this case, we call this array others.
+// // So as I said in the beginning,
+// // the rest pattern basically collects
+// // the elements that are unused
+// // in the destructuring assignment.
+
+// const [pizza, , risotto, ...otherFood] = [
+//   ...restaurant.mainMenu,
+//   ...restaurant.starterMenu,
+// ];
+
+// console.log(pizza, risotto, otherFood);
+// // and note here that the rest syntax collects
+// // all the array after the last variable.
+// // So in this case here risotto
+// // so it does not include any skipped elements
+// // so it's really just the rest of the elements
+// // and yeah again, as I said,
+// // it does not include any skipped elements
+// // and so for that reason,
+// // the rest pattern always must be the lest
+// // in the destructuring assignment
+// // because otherwise how will JavaScript know
+// // until when it should collect the rest of the array, right?
+
+// //Objects
+// // and now let's do the same in objects
+// // because it also works indeed in objects.
+// // So the difference then of course,
+// // is that the remaining elements will be collected
+// // into a new object and not into a new array.
+// const { sat, ...weekdays } = restaurant.openingHours;
+// console.log(weekdays);
+
+// //2 Functions
+
+// // and so now once again, as I said in the beginning
+// // the rest syntax is taking multiple numbers
+// // or multiple values and then packs them all into one array.
+// // So, once more it is doing the opposite
+// // of the spread operator
+// // so with the spread operator we expand
+// // with the rest syntax we compress
+// // so here it's called rest arguments
+// const add = function (...numbers) {
+//   // console.log(numbers);
+//   let sum = 0;
+//   for (let i = 0; i < numbers.length; i++) {
+//     sum += numbers[i];
+//     console.log(sum);
+//   }
+// };
+
+// add(2, 3);
+// add(5, 3, 7, 2);
+// add(8, 2, 5, 3, 2, 1, 4);
+
+// const x = [23, 5, 7];
+// add(...x);
+
+// restaurant.orderPizza('mushrooms', 'onion', 'olive', 'spinach');
+// restaurant.orderPizza('mushrooms');
+
+// // once again the rest parameters serves to collect
+// // all of the remaining basically unused parameters
+// // that were not used in this parameter.
+// // All right, so let's recap
+// // after yet another quiet, long lecture here.
+// // So, the spread and rests syntax
+// // both look exactly the same
+// // but they work in opposite ways
+// // depending on where they are used.
+// // So the spread operator is used
+// // where we would otherwise write values, separated by a comma.
+// // On the other hand the rest pattern is basically used
+// // where we would otherwise write variable names
+// // separated by commas.
+// // So, again the rest pattern can be used
+// // where we would write variable names, separated by commas
+// // and not values separated by commas.
+// // So it's a subtle distinction, but this is how you know
+// // when and where to use spread and rest.
+
+////////////////////////////////////////////////////////////////////////////
+//  Short Circuiting (&& and ||)
+////////////////////////////////////////////////////////////////////////////
+
 const restaurant = {
   name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -489,116 +654,110 @@ const restaurant = {
   },
 };
 
-// Moving on let's now talk about the rest pattern
-// and also rest parameters
-// and the rest pattern looks exactly like the spread operator.
-// So it has the same syntax with the three dots
-// but it actually does the opposite of the spread operator.
+console.log('------- OR -----------');
+// Use ANY data type, return ANY data type, short-circuitting
+console.log(3 || 'Elmar');
+console.log('' || 'Elmar'); //'' falesy value
+console.log(true || 0);
+console.log(undefined || null);
 
-// But let me explain, so remember
-// that we used the spread operator to build new arrays
-// or to pass multiple values into a function.
-// So those are the two use cases of the spread operator
-// and in both cases, we use the spread operator
-// to expand an array into individual elements.
-// Now, the rest pattern uses the exact same syntax
-// however, to collect multiple elements
-// and condense them into an array.
-// so that's really the opposite of spread
-// The spread operator is to unpack an array
-// while rest is to pack elements into an array
+// in the case of the OR operator,
+// short circuiting means that if the first value
+// is a truthy value,
+// it will immediately return that first value.
+// So that's exactly what we see here
+// with the three which is a truthy value.
+// So again, if the first operand is truthy here
+// in the OR operator,
+// then the other operand will not even be evaluated.
+// So JavaScript will not even take a look at it.
+// And so that's what we mean with short circuiting.
 
-//1 Destructuring
+// And so here we see again that the result
+// of the OR operator
+// doesn't have to be a Boolean.
+// It will simply return the truthy value here.
 
-//SPREAD, becuase on RIGHT side of =
-const arr = [1, 2, ...[3, 4]];
+// Because remember, in the OR operation,
+// the result is true,
+// if at least one operand is true, right?
+// So if the first operand is already true,
 
-//REST, becuase on LEFT side of =
-const [a, b, ...others] = [2, 3, 4, 5];
-console.log(a, b, others);
-// and so it's called rest because it will take
-// the rest of the elements.
-// So the remaining elements of the array
-// and then put them into a new array
-// and in this case, we call this array others.
-// So as I said in the beginning,
-// the rest pattern basically collects
-// the elements that are unused
-// in the destructuring assignment.
+console.log(undefined || 0 || '' || 'Hello' || 23 || null); //Hello is the truthy value
 
-const [pizza, , risotto, ...otherFood] = [
-  ...restaurant.mainMenu,
-  ...restaurant.starterMenu,
-];
+// restaurant.numGuests = 0; falsey value
+// restaurant.numGuests = 23;
+const guest1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guest1);
 
-console.log(pizza, risotto, otherFood);
-// and note here that the rest syntax collects
-// all the array after the last variable.
-// So in this case here risotto
-// so it does not include any skipped elements
-// so it's really just the rest of the elements
-// and yeah again, as I said,
-// it does not include any skipped elements
-// and so for that reason,
-// the rest pattern always must be the lest
-// in the destructuring assignment
-// because otherwise how will JavaScript know
-// until when it should collect the rest of the array, right?
+const guest2 = restaurant.numGuests || 10;
+console.log(guest2);
 
-//Objects
-// and now let's do the same in objects
-// because it also works indeed in objects.
-// So the difference then of course,
-// is that the remaining elements will be collected
-// into a new object and not into a new array.
-const { sat, ...weekdays } = restaurant.openingHours;
-console.log(weekdays);
+console.log('------- AND -----------');
+// So the AND operator is only true
+// if all the operands are true.
+// And so, if the first one here is false,
+// then it means that the entire result of the AND operation
+// will already be false anyway.
+// And so there is no need to even look
+// at any of the other operands.
 
-//2 Functions
+console.log(0 && 'Elmar');
+console.log(7 && 'Elmar');
 
-// and so now once again, as I said in the beginning
-// the rest syntax is taking multiple numbers
-// or multiple values and then packs them all into one array.
-// So, once more it is doing the opposite
-// of the spread operator
-// so with the spread operator we expand
-// with the rest syntax we compress
-// so here it's called rest arguments
-const add = function (...numbers) {
-  // console.log(numbers);
-  let sum = 0;
-  for (let i = 0; i < numbers.length; i++) {
-    sum += numbers[i];
-    console.log(sum);
-  }
-};
+console.log('Hello' && 23 && null && 'Elmar');
 
-add(2, 3);
-add(5, 3, 7, 2);
-add(8, 2, 5, 3, 2, 1, 4);
+// if restaurant dot order, order pizza.
+// So basically we're checking if this method exists
+// and then if it does exist,
+// we want to call it.
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'spinach');
+}
 
-const x = [23, 5, 7];
-add(...x);
+// about the AND operator,
+// we can do this in a simpler way.
+// So we can say restaurant dot order pizza,
+// and then basically if restaurant dot order pizza
+// does not exist, so it's undefined,
+// it will then short circuit the evaluation
+// and nothing else will happen.
+// And so that's essentially exactly the same
+// as this if block here is doing.
+// All right, but if it does exist.
+// So if it's a truthy value,
+// then the second part here will be evaluated.
+// And so here in this second operand,
+// we can then call the function.
+// Okay.
+// And it's perfectly fine to use this operands,
+// the second operand` here to call a function.
+// We can put anything here.
+// It doesn't just have to be a single value.
+// Now I'm not saying that you should go ahead
+// and replace all your if statements
+// with the AND or the OR operators,
+// so please definitely don't do that
+// because it's gonna make your code very hard
+// to read in the future.
 
-restaurant.orderPizza('mushrooms', 'onion', 'olive', 'spinach');
-restaurant.orderPizza('mushrooms');
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 
-// once again the rest parameters serves to collect
-// all of the remaining basically unused parameters
-// that were not used in this parameter.
-// All right, so let's recap
-// after yet another quiet, long lecture here.
-// So, the spread and rests syntax
-// both look exactly the same
-// but they work in opposite ways
-// depending on where they are used.
-// So the spread operator is used
-// where we would otherwise write values, separated by a comma.
-// On the other hand the rest pattern is basically used
-// where we would otherwise write variable names
-// separated by commas.
-// So, again the rest pattern can be used
-// where we would write variable names, separated by commas
-// and not values separated by commas.
-// So it's a subtle distinction, but this is how you know
-// when and where to use spread and rest.
+// But anyway, let's now summarize.
+// So the OR operator will return the first truthy value
+// of all the operands,
+// or simply the last value if all of them are falsy.
+// So that's what happened here, right?
+// On the other hand,
+// the AND operator will return the first falsy value
+// or the last value if all of them are truthy.
+// And as for practical applications,
+// we can use the OR operator to set default values,
+// and we can use the AND operator
+// to execute code in the second operand
+// if the first one is true.
+// So play around some more with this maybe,
+// and then let's just move on to the next video
+// where we will solve this problem that we had here
+// with this OR operator
+// and this zero.
