@@ -1043,6 +1043,168 @@
 // Looping Arrays: The for-of Loop
 //////////////////////////////////////////////////////////////////
 
+// const restaurant = {
+//   name: 'Classico Italiano',
+//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+//   openingHours: {
+//     thu: {
+//       open: 12,
+//       close: 22,
+//     },
+//     fri: {
+//       open: 11,
+//       close: 23,
+//     },
+//     sat: {
+//       open: 0, // Open 24 hours
+//       close: 24,
+//     },
+//   },
+
+//   order: function (starterIndex, mainIndex) {
+//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   },
+
+//   orderDelivery: function ({
+//     starterIndex = 1,
+//     mainIndex = 0,
+//     time = '20:00',
+//     address,
+//   }) {
+//     console.log(
+//       `Order recieved! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+//     );
+//   },
+
+//   orderPasta: function (ing1, ing2, ing3) {
+//     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+//   },
+
+//   orderPizza: function (mainIngredients, ...otherIngrdients) {
+//     console.log(mainIngredients);
+//     console.log(otherIngrdients);
+//   },
+// };
+
+// // Let's now talk about a new way of looping over arrays,
+// // which was introduced in ES6.
+// // And that's the for-of loop.
+
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+// for (const item of menu) console.log(item);
+
+// // but it's a really nice level of obstructing
+// // over the regular for loop.
+// // So we can do the same thing with this one,
+// // but without having to worry about
+// // all the underlying details
+// // such as counters and conditions.
+
+// // What's also great about the for-of loop,
+// // is that we can still use the continue and break keywords.
+
+// // But now what if we also wanted the current index
+// // and not just the current element?
+// // Well, in the for-of loop,
+// // it's actually a bit of a pain
+// // when we need that index,
+// // because originally the for-of loop
+// // was really just meant to give you the current element.
+// // However, you can get both
+// // and you will have to do it like this.
+// for (const item of menu.entries()) {
+//   console.log(item);
+// }
+
+// for (const item of menu.entries()) {
+//   console.log(`${item[0] + 1}: ${item[1]}`); // old school way
+// }
+
+// // All we have to do is to use the de-structuring assignment
+// // and then create the two variables that we want.
+// // So let's call it i and el for element.
+// // So here we can use i and here element.
+// // So that's checked out and indeed it works the same.
+// // And so once again these structuring
+// // made our lives a little bit easier here.
+// // So it's a really great addition
+// // to the JavaScript language here once again.
+// // And the same is of course true
+// // for the for-of loop itself,
+// // which also makes it a lot easier
+// // to loop over arrays.
+
+// for (const [i, el] of menu.entries()) {
+//   console.log(`${i + 1}: ${el}`);
+// }
+
+// // what this mysterious menu dot entries actually is.
+// // So menu dot entries,
+// // and so here we get this weird array iterator.
+// // And so that's not really helpful,
+// // but we will learn about iterators
+// // by the end of the course.
+
+// // console.log(menu.entries());
+
+// // But if we want to take a look at this,
+// // we need to essentially expand this here,
+// // using the spread operator
+// // and then create a new array based out of that.
+// // So again this is really just to take a look
+// // at what menu dot entries actually is.
+// // And so we see that it is basically an array,
+// // which in each position contains a new array,
+// // which contains the element,
+// // so the element entity index number of that element
+// // in the original array.
+
+// // console.log([...menu.entries()]);
+
+////////////////////////////////////////////////////////////////////////////
+// Enhanced Object Literals
+////////////////////////////////////////////////////////////////////////////
+
+// So this restaurant object is an object literal,
+// so you can see that because we basically wrote
+// this object literally in our code using
+// this curly braces syntax.
+
+//3) compute property names
+// And finally, the third enhancement is
+// that we can now actually compute property names instead
+// of having to write them out manually and literally.
+// And compute just means like calculate
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+
+  //  And this is sometimes extremely helpful
+  // to be able to do this.
+  // [`day-${2 + 4}`]: {
+  //   open: 0, // Open 24 hours
+  //   close: 24,
+  // },
+
+  [weekdays[5]]: {
+    open: 0, // Open 24 hours
+    close: 12 + 12,
+  },
+};
+
 const restaurant = {
   name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -1050,118 +1212,100 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
+  //old
+  // openingHours: openingHours,
 
-  order: function (starterIndex, mainIndex) {
+  //1) enhancement
+  //ES6 enhanced object literals
+  openingHours,
+
+  // openingHours: {
+  //   thu: {
+  //     open: 12,
+  //     close: 22,
+  //   },
+  //   fri: {
+  //     open: 11,
+  //     close: 23,
+  //   },
+  //   sat: {
+  //     open: 0, // Open 24 hours
+  //     close: 24,
+  //   },
+  // },
+
+  //2) enhancement
+  // and so let's not check out the second one.
+  // So the second enhancement to object literals
+  // is about writing methods.
+  // So in ES6 we no longer have to create a property,
+  // and then set it to a function expression,
+  // like we have always been doing,
+
+  //old ways
+  // order: function (starterIndex, mainIndex) {
+  //   return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  // },
+
+  //ES6 enhanced object literals about writing methods
+  order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
-  orderDelivery: function ({
-    starterIndex = 1,
-    mainIndex = 0,
-    time = '20:00',
-    address,
-  }) {
+  //old ways
+  // orderDelivery: function ({
+  //   starterIndex = 1,
+  //   mainIndex = 0,
+  //   time = '20:00',
+  //   address,
+  // }) {
+  //   console.log(
+  //     `Order recieved! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+  //   );
+  // },
+
+  //ES6 enhanced object literals about writing methods
+  orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
     console.log(
       `Order recieved! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
 
-  orderPasta: function (ing1, ing2, ing3) {
+  //old ways
+  // orderPasta: function (ing1, ing2, ing3) {
+  //   console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+  // },
+
+  //ES6 enhanced object literals about writing methods
+  orderPasta(ing1, ing2, ing3) {
     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
   },
 
-  orderPizza: function (mainIngredients, ...otherIngrdients) {
+  //old ways
+  // orderPizza: function (mainIngredients, ...otherIngrdients) {
+  //   console.log(mainIngredients);
+  //   console.log(otherIngrdients);
+  // },
+
+  //ES6 enhanced object literals about writing methods
+  orderPizza(mainIngredients, ...otherIngrdients) {
     console.log(mainIngredients);
     console.log(otherIngrdients);
   },
 };
 
-// Let's now talk about a new way of looping over arrays,
-// which was introduced in ES6.
-// And that's the for-of loop.
+// So maybe you've been noticing
+// that we have been talking a lot about ES6 features
+// and even newer additions to the language.
+// And so let's continue with that now
+// with yet another enhancement,
+// which is enhanced object literals.
 
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// Now ES6 introduced three ways, which make it easier
+// to write object literals like this.
 
-for (const item of menu) console.log(item);
-
-// but it's a really nice level of obstructing
-// over the regular for loop.
-// So we can do the same thing with this one,
-// but without having to worry about
-// all the underlying details
-// such as counters and conditions.
-
-// What's also great about the for-of loop,
-// is that we can still use the continue and break keywords.
-
-// But now what if we also wanted the current index
-// and not just the current element?
-// Well, in the for-of loop,
-// it's actually a bit of a pain
-// when we need that index,
-// because originally the for-of loop
-// was really just meant to give you the current element.
-// However, you can get both
-// and you will have to do it like this.
-for (const item of menu.entries()) {
-  console.log(item);
-}
-
-for (const item of menu.entries()) {
-  console.log(`${item[0] + 1}: ${item[1]}`); // old school way
-}
-
-// All we have to do is to use the de-structuring assignment
-// and then create the two variables that we want.
-// So let's call it i and el for element.
-// So here we can use i and here element.
-// So that's checked out and indeed it works the same.
-// And so once again these structuring
-// made our lives a little bit easier here.
-// So it's a really great addition
-// to the JavaScript language here once again.
-// And the same is of course true
-// for the for-of loop itself,
-// which also makes it a lot easier
-// to loop over arrays.
-
-for (const [i, el] of menu.entries()) {
-  console.log(`${i + 1}: ${el}`);
-}
-
-// what this mysterious menu dot entries actually is.
-// So menu dot entries,
-// and so here we get this weird array iterator.
-// And so that's not really helpful,
-// but we will learn about iterators
-// by the end of the course.
-
-// console.log(menu.entries());
-
-// But if we want to take a look at this,
-// we need to essentially expand this here,
-// using the spread operator
-// and then create a new array based out of that.
-// So again this is really just to take a look
-// at what menu dot entries actually is.
-// And so we see that it is basically an array,
-// which in each position contains a new array,
-// which contains the element,
-// so the element entity index number of that element
-// in the original array.
-
-// console.log([...menu.entries()]);
+// And I actually personally really prefer this new syntax,
+// so I'm gonna change this entire object to the new way
+// of writing methods, but this actually comes down
+// to personal preference once again.
+// So if you prefer the old way you can just keep it like that.
