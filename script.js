@@ -1314,6 +1314,141 @@
 // Optional Chaining (?.)
 ///////////////////////////////////////////////////////////////////
 
+// const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+// const openingHours = {
+//   [weekdays[3]]: {
+//     open: 12,
+//     close: 22,
+//   },
+//   [weekdays[4]]: {
+//     open: 11,
+//     close: 23,
+//   },
+
+//   [weekdays[5]]: {
+//     open: 0, // Open 24 hours
+//     close: 12 + 12,
+//   },
+// };
+
+// const restaurant = {
+//   name: 'Classico Italiano',
+//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+//   openingHours,
+
+//   // openingHours: {
+//   //   thu: {
+//   //     open: 12,
+//   //     close: 22,
+//   //   },
+//   //   fri: {
+//   //     open: 11,
+//   //     close: 23,
+//   //   },
+//   //   sat: {
+//   //     open: 0, // Open 24 hours
+//   //     close: 24,
+//   //   },
+//   // },
+
+//   order(starterIndex, mainIndex) {
+//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   },
+
+//   orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
+//     console.log(
+//       `Order recieved! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+//     );
+//   },
+
+//   orderPasta(ing1, ing2, ing3) {
+//     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+//   },
+
+//   orderPizza(mainIngredients, ...otherIngrdients) {
+//     console.log(mainIngredients);
+//     console.log(otherIngrdients);
+//   },
+// };
+
+// // WITHOUT optional chaining
+// // if (restaurant.openingHours.fri) console.log(restaurant.openingHours.fri.open);
+
+// if (restaurant.openingHours && restaurant.openingHours.mon)
+//   console.log(restaurant.openingHours.mon.open);
+
+// // WITHOUT optional chaining
+// // console.log(restaurant.openingHours.mon.open);
+
+// //   And this can get out of hand pretty quickly
+// // when we have deeply nested objects
+// // with lots of optional properties.
+// // And sometimes that happens in the real world.
+// // And so therefore ES2020
+// // introduced a great solution for this,
+// // which is a feature called optional chaining.
+// // And with optional chaining,
+// // if a certain property does not exist,
+// // then undefined is returned immediately.
+// // And so that will then avoid
+// // that kind of error that we saw earlier.
+
+// // WITH optional chaining
+
+// // But here this next operation of trying to read open
+// // only happens if all of this here actually exists.
+// // So if it's not null and not undefined.
+// // But if it is undefined or null,
+// // then the result will be undefined immediately.
+// console.log(restaurant.openingHours?.mon?.open);
+
+// //Example
+// const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+// for (const day of days) {
+//   // console.log(day);
+
+//   //   So restaurant.openingHours
+//   // but now we cannot do this, right?
+//   // Because this is not an actual property name of the object.
+//   // And so remember if we want to use a variable name
+//   // as the property name,
+//   // basically, we need to use the brackets notation.
+//   // restaurant.openingHours.day; //we cannot do this
+//   const open1 = restaurant.openingHours[day]?.open || 'closed';
+//   console.log(`On ${day}, we open at ${open1}`);
+//   console.log('=============================');
+//   const open2 = restaurant.openingHours[day]?.open ?? 'closed';
+//   console.log(`On ${day}, we open at ${open2}`);
+// }
+
+// //Methods - optional chaining
+// console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+// console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist');
+
+// // Arrays - optional chaining
+// const users = [{ name: 'Elmar', email: 'hello@elmar.io' }];
+
+// // const users = [];
+
+// //// WITH optional chaining
+// console.log(users[0]?.name ?? 'User array empty');
+
+// // WITHOUT optional chaining
+// if (users.length > 0) {
+//   console.log(users[0].name);
+// } else {
+//   console.log('User array empty');
+// }
+
+//////////////////////////////////////////////////////////////////
+// Looping Objects: Object Keys, Values, and Entries
+//////////////////////////////////////////////////////////////////
+
 const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
 const openingHours = {
@@ -1375,72 +1510,55 @@ const restaurant = {
   },
 };
 
-// WITHOUT optional chaining
-// if (restaurant.openingHours.fri) console.log(restaurant.openingHours.fri.open);
+// So we learned about the for of loop
+// to loop over a race, which remember is an Iterable,
+// but we can also loop over objects,
+// which are not Iterable,
+// but in an indirect way.
+// Now we have different options here,
+// depending on what exactly we want to loop over.
+// So do we want to loop over the objects, property names
+// over the values or both together.
+// And let's start by simply looping over property names.
+// And so remember they are also called keys.
+// Now, ultimately we will still have to use the for of loop
+// to loop over the array, but again,
+// we're going to do that in an indirect way.
+// So we're not actually looping over the object itself.
+// Instead, we're going to loop over, an array.
 
-if (restaurant.openingHours && restaurant.openingHours.mon)
-  console.log(restaurant.openingHours.mon.open);
+//Property NAMES
+const properties = Object.keys(openingHours);
+console.log(properties);
 
-// WITHOUT optional chaining
-// console.log(restaurant.openingHours.mon.open);
+// console.log(`We are open on ${properties.length} days.`);
+// for (const day of Object.keys(openingHours)) {
+//   console.log(day);
+// }
 
-//   And this can get out of hand pretty quickly
-// when we have deeply nested objects
-// with lots of optional properties.
-// And sometimes that happens in the real world.
-// And so therefore ES2020
-// introduced a great solution for this,
-// which is a feature called optional chaining.
-// And with optional chaining,
-// if a certain property does not exist,
-// then undefined is returned immediately.
-// And so that will then avoid
-// that kind of error that we saw earlier.
+let openStr = `We are open on ${properties.length} days: `;
 
-// WITH optional chaining
+for (const day of properties) {
+  openStr += `${day}, `;
+}
+console.log(openStr);
 
-// But here this next operation of trying to read open
-// only happens if all of this here actually exists.
-// So if it's not null and not undefined.
-// But if it is undefined or null,
-// then the result will be undefined immediately.
-console.log(restaurant.openingHours?.mon?.open);
+// Property VALUES
+const values = Object.values(openingHours);
+console.log(values);
 
-//Example
-const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+//Entire object
+const entries = Object.entries(openingHours);
+console.log(entries);
 
-for (const day of days) {
-  // console.log(day);
-
-  //   So restaurant.openingHours
-  // but now we cannot do this, right?
-  // Because this is not an actual property name of the object.
-  // And so remember if we want to use a variable name
-  // as the property name,
-  // basically, we need to use the brackets notation.
-  // restaurant.openingHours.day; //we cannot do this
-  const open1 = restaurant.openingHours[day]?.open || 'closed';
-  console.log(`On ${day}, we open at ${open1}`);
-  console.log('=============================');
-  const open2 = restaurant.openingHours[day]?.open ?? 'closed';
-  console.log(`On ${day}, we open at ${open2}`);
+for (const [day, { open, close }] of entries) {
+  console.log(`On ${day} we open at ${open} and close at ${close}`);
 }
 
-//Methods - optional chaining
-console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
-console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist');
+// But if you had a more simple object with a simpler value,
+// then you would, of course only do this here
+// as destructuring, just a key and a value.
+// And of course you could then give them other names
+// as you would like.
 
-// Arrays - optional chaining
-const users = [{ name: 'Elmar', email: 'hello@elmar.io' }];
-
-// const users = [];
-
-//// WITH optional chaining
-console.log(users[0]?.name ?? 'User array empty');
-
-// WITHOUT optional chaining
-if (users.length > 0) {
-  console.log(users[0].name);
-} else {
-  console.log('User array empty');
-}
+//[key, value]
