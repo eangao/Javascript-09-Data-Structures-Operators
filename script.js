@@ -2185,158 +2185,173 @@
 // Maps: Iteration
 ///////////////////////////////////////////////////////////////////
 
-const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
-const openingHours = {
-  [weekdays[3]]: {
-    open: 12,
-    close: 22,
-  },
-  [weekdays[4]]: {
-    open: 11,
-    close: 23,
-  },
+// const openingHours = {
+//   [weekdays[3]]: {
+//     open: 12,
+//     close: 22,
+//   },
+//   [weekdays[4]]: {
+//     open: 11,
+//     close: 23,
+//   },
 
-  [weekdays[5]]: {
-    open: 0, // Open 24 hours
-    close: 12 + 12,
-  },
-};
+//   [weekdays[5]]: {
+//     open: 0, // Open 24 hours
+//     close: 12 + 12,
+//   },
+// };
 
-const restaurant = {
-  name: 'Classico Italiano',
-  location: 'Via Angelo Tavanti 23, Firenze, Italy',
-  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-  openingHours,
+// const restaurant = {
+//   name: 'Classico Italiano',
+//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+//   openingHours,
 
-  // openingHours: {
-  //   thu: {
-  //     open: 12,
-  //     close: 22,
-  //   },
-  //   fri: {
-  //     open: 11,
-  //     close: 23,
-  //   },
-  //   sat: {
-  //     open: 0, // Open 24 hours
-  //     close: 24,
-  //   },
-  // },
+//   // openingHours: {
+//   //   thu: {
+//   //     open: 12,
+//   //     close: 22,
+//   //   },
+//   //   fri: {
+//   //     open: 11,
+//   //     close: 23,
+//   //   },
+//   //   sat: {
+//   //     open: 0, // Open 24 hours
+//   //     close: 24,
+//   //   },
+//   // },
 
-  order(starterIndex, mainIndex) {
-    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-  },
+//   order(starterIndex, mainIndex) {
+//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   },
 
-  orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
-    console.log(
-      `Order recieved! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
-    );
-  },
+//   orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
+//     console.log(
+//       `Order recieved! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+//     );
+//   },
 
-  orderPasta(ing1, ing2, ing3) {
-    console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
-  },
+//   orderPasta(ing1, ing2, ing3) {
+//     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+//   },
 
-  orderPizza(mainIngredients, ...otherIngrdients) {
-    console.log(mainIngredients);
-    console.log(otherIngrdients);
-  },
-};
+//   orderPizza(mainIngredients, ...otherIngrdients) {
+//     console.log(mainIngredients);
+//     console.log(otherIngrdients);
+//   },
+// };
 
-// So in the last video we created an empty map
-// and then edit elements
-// to it by using the set method.
-// Remember, however,
-// there is actually another way of populating a new map
-// without having to use the set method.
-// And I prefer that because the set method
-// is a bit cumbersome when there are a lot
+// // So in the last video we created an empty map
+// // and then edit elements
+// // to it by using the set method.
+// // Remember, however,
+// // there is actually another way of populating a new map
+// // without having to use the set method.
+// // And I prefer that because the set method
+// // is a bit cumbersome when there are a lot
 
-// and then here we can pass in an array
-// and disarray itself will contain multiple arrays.
-// And in each of these arrays,
-// the first position is gonna be the key.
-// And the second position is gonna be the value.
+// // and then here we can pass in an array
+// // and disarray itself will contain multiple arrays.
+// // And in each of these arrays,
+// // the first position is gonna be the key.
+// // And the second position is gonna be the value.
 
-const question = new Map([
-  ['question', 'What is the best programming language in the world?'],
-  [1, 'C'],
-  [2, 'Java'],
-  [3, 'JavaScript'],
-  ['correct', 3],
-  [true, 'Correct 🎉'],
-  [false, 'Try again!'],
-]);
+// const question = new Map([
+//   ['question', 'What is the best programming language in the world?'],
+//   [1, 'C'],
+//   [2, 'Java'],
+//   [3, 'JavaScript'],
+//   ['correct', 3],
+//   [true, 'Correct 🎉'],
+//   [false, 'Try again!'],
+// ]);
 
-console.log(question);
-// I actually prefer this way
-// of writing it over the way that we did
-// in a previous lecture.
-// But when we keep adding new elements,
-// programmatically using code,
-// then of course the set method is still the way to go.
+// console.log(question);
+// // I actually prefer this way
+// // of writing it over the way that we did
+// // in a previous lecture.
+// // But when we keep adding new elements,
+// // programmatically using code,
+// // then of course the set method is still the way to go.
 
-//Convert object to map
-// whenever you need a map,
-// when you already have an object.
-console.log(Object.entries(openingHours));
-const hoursMap = new Map(Object.entries(openingHours));
-console.log(hoursMap);
+// //Convert object to map
+// // whenever you need a map,
+// // when you already have an object.
+// console.log(Object.entries(openingHours));
+// const hoursMap = new Map(Object.entries(openingHours));
+// console.log(hoursMap);
 
-// Next up, let's talk about iteration
-// and iteration is possible
-// on maps because as we already know,
-// maps are also iterables.
-// And so the for loop
-// is also available for them.
+// // Next up, let's talk about iteration
+// // and iteration is possible
+// // on maps because as we already know,
+// // maps are also iterables.
+// // And so the for loop
+// // is also available for them.
 
-// The only difference is that for the object,
-// we needed object dot entries right here.
-// And that's just because the object
-// is not an alterable,
-// but then we converted it
-// to an alterable using object dot entries.
+// // The only difference is that for the object,
+// // we needed object dot entries right here.
+// // And that's just because the object
+// // is not an alterable,
+// // but then we converted it
+// // to an alterable using object dot entries.
 
-//Quiz app
-console.log(question.get('question'));
-for (const [key, value] of question) {
-  if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
-}
+// //Quiz app
+// console.log(question.get('question'));
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+// }
 
-// const answer = Number(prompt('Your answer'));
-const answer = 3;
-console.log(answer);
+// // const answer = Number(prompt('Your answer'));
+// const answer = 3;
+// console.log(answer);
 
-// we are using the power of having Boolean values as keys,
-console.log(question.get(question.get('correct') === answer));
+// // we are using the power of having Boolean values as keys,
+// console.log(question.get(question.get('correct') === answer));
 
-// as a side note,
-// sometimes we also need to convert a map back
-// to an array.
-// So basically to this structure,
-// and we can do that, like this.
-// So convert map
-// to array basically.
-// You can do that by simply building new array
-// and then unpacking again,
-// using the spread operator.
-// The question map,
-// it's asking us here again.
-// And so then the result is essentially
-// this same data structure.
-// So the array of arrays,
-// with which we started.
-// So it's this one here.
-// So in this case, of course,
-// this wouldn't make too much sense,
-// but it's still got to know that sometimes
-// you can convert a map to an array.
+// // as a side note,
+// // sometimes we also need to convert a map back
+// // to an array.
+// // So basically to this structure,
+// // and we can do that, like this.
+// // So convert map
+// // to array basically.
+// // You can do that by simply building new array
+// // and then unpacking again,
+// // using the spread operator.
+// // The question map,
+// // it's asking us here again.
+// // And so then the result is essentially
+// // this same data structure.
+// // So the array of arrays,
+// // with which we started.
+// // So it's this one here.
+// // So in this case, of course,
+// // this wouldn't make too much sense,
+// // but it's still got to know that sometimes
+// // you can convert a map to an array.
 
-//Convert map to array
-console.log([...question]);
-console.log([question.entries()]);
-console.log([question.keys()]);
-console.log([question.values()]);
+// //Convert map to array
+// console.log([...question]);
+// console.log([question.entries()]);
+// console.log([question.keys()]);
+// console.log([question.values()]);
+
+///////////////////////////////////////////////////////////////////
+// Summary: Which Data Structure to Use?
+///////////////////////////////////////////////////////////////////
+// Dealing and working with data is the main thing
+// that we do as developers.
+// And that's the reason why,
+// since the beginning of the course,
+// we have been working
+// with JavaScripts built-in data structures,
+// like arrays and objects.
+// Then in the last few lectures
+// we learned about two new data structures
+
+//see pdf lecture - Data structure overview
