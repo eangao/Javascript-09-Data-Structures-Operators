@@ -1955,6 +1955,236 @@
 // Maps: Fundamentals
 ////////////////////////////////////////////////////////////////////
 
+// const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+// const openingHours = {
+//   [weekdays[3]]: {
+//     open: 12,
+//     close: 22,
+//   },
+//   [weekdays[4]]: {
+//     open: 11,
+//     close: 23,
+//   },
+
+//   [weekdays[5]]: {
+//     open: 0, // Open 24 hours
+//     close: 12 + 12,
+//   },
+// };
+
+// const restaurant = {
+//   name: 'Classico Italiano',
+//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+//   openingHours,
+
+//   // openingHours: {
+//   //   thu: {
+//   //     open: 12,
+//   //     close: 22,
+//   //   },
+//   //   fri: {
+//   //     open: 11,
+//   //     close: 23,
+//   //   },
+//   //   sat: {
+//   //     open: 0, // Open 24 hours
+//   //     close: 24,
+//   //   },
+//   // },
+
+//   order(starterIndex, mainIndex) {
+//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   },
+
+//   orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
+//     console.log(
+//       `Order recieved! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+//     );
+//   },
+
+//   orderPasta(ing1, ing2, ing3) {
+//     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+//   },
+
+//   orderPizza(mainIngredients, ...otherIngrdients) {
+//     console.log(mainIngredients);
+//     console.log(otherIngrdients);
+//   },
+// };
+
+// // Now, it's time to learn
+// // about the other new JavaScript data structure
+// // and that is maps.
+// // And, let me start by telling you
+// // that maps are a lot more useful than sets.
+// // So what exactly is a map?
+// // Well, it's certainly not the same thing
+// // that we use in the real life
+// // to find our ways around.
+// // Now, instead in JavaScript,
+// // a map is a data structure
+// // that we can use to map values to keys.
+// // So, just like an object
+// // data is stored in key value pairs in maps.
+// // Now, the big difference between objects and maps
+// // is that in maps, the keys can have any type
+// // and this can be huge.
+// // So, in objects, the keys are basically always strings.
+// // But in maps, we can have any type of key.
+// // It could even be objects, or arrays, or other maps.
+// // So, that can lead to some really great and advanced stuff.
+
+// // And the easiest way to create a map
+// // is to actually create an empty map
+// const rest = new Map();
+
+// // And then, to fill up the map
+// // we can use the set method.
+// // And then here, we pass into arguments.
+// // The first is the key name.
+
+// // And, so you see, that this set method is pretty similar
+// // to the add method that we had in sets.
+// rest.set('name', 'Classico Italiano');
+
+// // And, remember that we can use any data type that we want.
+// // So, let's say that the restaurant has two locations.
+// // So, we can create a key with a number.
+// // It doesn't have to be a string.
+// rest.set(1, 'Firenze, Italy');
+// console.log(rest.set(2, 'Lisbon, Portugal'));
+
+// // Now, the fact that the set method
+// // actually returns the updated map
+// // allows us to change the set method like this.
+// // So, again, calling the set method
+// // returns the updated map.
+// rest
+//   .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+//   .set('open', 11)
+//   .set('close', 23)
+//   .set(true, 'We are open :D')
+//   .set(false, 'We are closed :(');
+
+// //   Now, in order to read data from a map
+// // we use the Get method.
+// // And so, that get method is available on all the maps.
+// // And so, all we need to do is to pass in the name of the key.
+// console.log(rest.get('name'));
+// console.log(rest.get(true)); //of course the data type of the key matters.
+// console.log(rest.get(1));
+
+// // Now, this is as I said pretty clever,
+// // but it's not really so readable.
+// // So, don't overuse this kind of pattern, okay?
+// // This just really goes to show the power
+// // of having Booleans as map keys.
+// const time = 8;
+// console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+// // Now, we can also check if a map contains a certain key.
+// console.log(rest.has('categories'));
+
+// // Then, we can also delete elements from the map.
+// // And again, that happens based on the key.
+// rest.delete(2);
+// console.log(rest);
+
+// // Now comparing this to objects,
+// // we can actually also delete properties from objects
+// // using something called the Delete Operator.
+// // But, that's a really slow process.
+// // And usually, it's not encouraged to do that here.
+// // About the has method.
+// // Actually, objects do also have a method
+// // which is called hasOwnProperty.
+// // But, we're gonna talk about that
+// // in the object oriented programming section, all right?
+
+// //Next, maps also have the size property.
+// console.log(rest.size);
+
+// // And then, to finish, we can also clear.
+// // So basically, remove all the elements from the map.
+// // Let's just put that
+
+// // rest.clear();
+// console.log(rest);
+// console.log(rest.size);
+
+// // So, as you can see here,
+// // there is some overlap in the way that we work
+// // with maps and sets.
+// // And, that's because they were both introduced in ES6.
+
+// // And now just to finish,
+// // let me show you that we can in fact use arrays
+// // or objects as map keys.
+// rest.set([1, 2], 'Test');
+// console.log(rest);
+// console.log(rest.size);
+
+// // But now, to get the data based on that array
+
+// // But, given what we learned
+// // in the previous section
+// // about how JavaScript works behind the scenes.
+// // Especially, primitives versus objects.
+// // Do you think that this will now retrieve Test?
+// // Well, let's see.
+// // And, no it did not.
+// // And the reason for that,
+// // is that these two arrays
+// // are actually not the same object.
+// // So, this array, and this one,
+// // even though we wrote them in the same way
+// // and so, they have the same elements,
+// // they are not the same object in the heap, okay?
+
+// // In order to make it work
+// // we would have to do this.
+// // Creating an array, one, two.
+// // And then, we use that array.
+// // And then, we also use the same array
+// // to read the value out of the map.
+// // And so now, it is gonna work, okay?
+// // Because, now of course
+// // these two refer to the same place in memory.
+
+// const arr = [1, 2];
+// rest.set(arr, 'Test');
+// console.log(rest);
+// console.log(rest.size);
+// console.log(rest.get(arr));
+
+// // Great, and so with this we proved
+// // that we can indeed use objects as map keys.
+// // And, this can be very useful with DOM elements
+// // which, in fact are also nothing more than just
+// // a special type of object.
+
+// // And so, the result of this will be an object.
+// // And so, let's say that this is the heading.
+// // That now as we check it out here,
+// // you will see that it's here indeed.
+// // So, as I hover it
+// // you can even see it here visible on the webpage.
+// // You see that?
+// // The highlight up there?
+// // That exactly is the key of this map entry.
+// // Sounds crazy, but it is possible
+// // and it can enable some advanced functionality.
+// rest.set(document.querySelector('h1', 'Heading'));
+// console.log(rest);
+
+///////////////////////////////////////////////////////////////////
+// Maps: Iteration
+///////////////////////////////////////////////////////////////////
+
 const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
 const openingHours = {
@@ -2016,167 +2246,97 @@ const restaurant = {
   },
 };
 
-// Now, it's time to learn
-// about the other new JavaScript data structure
-// and that is maps.
-// And, let me start by telling you
-// that maps are a lot more useful than sets.
-// So what exactly is a map?
-// Well, it's certainly not the same thing
-// that we use in the real life
-// to find our ways around.
-// Now, instead in JavaScript,
-// a map is a data structure
-// that we can use to map values to keys.
-// So, just like an object
-// data is stored in key value pairs in maps.
-// Now, the big difference between objects and maps
-// is that in maps, the keys can have any type
-// and this can be huge.
-// So, in objects, the keys are basically always strings.
-// But in maps, we can have any type of key.
-// It could even be objects, or arrays, or other maps.
-// So, that can lead to some really great and advanced stuff.
+// So in the last video we created an empty map
+// and then edit elements
+// to it by using the set method.
+// Remember, however,
+// there is actually another way of populating a new map
+// without having to use the set method.
+// And I prefer that because the set method
+// is a bit cumbersome when there are a lot
 
-// And the easiest way to create a map
-// is to actually create an empty map
-const rest = new Map();
+// and then here we can pass in an array
+// and disarray itself will contain multiple arrays.
+// And in each of these arrays,
+// the first position is gonna be the key.
+// And the second position is gonna be the value.
 
-// And then, to fill up the map
-// we can use the set method.
-// And then here, we pass into arguments.
-// The first is the key name.
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct 🎉'],
+  [false, 'Try again!'],
+]);
 
-// And, so you see, that this set method is pretty similar
-// to the add method that we had in sets.
-rest.set('name', 'Classico Italiano');
+console.log(question);
+// I actually prefer this way
+// of writing it over the way that we did
+// in a previous lecture.
+// But when we keep adding new elements,
+// programmatically using code,
+// then of course the set method is still the way to go.
 
-// And, remember that we can use any data type that we want.
-// So, let's say that the restaurant has two locations.
-// So, we can create a key with a number.
-// It doesn't have to be a string.
-rest.set(1, 'Firenze, Italy');
-console.log(rest.set(2, 'Lisbon, Portugal'));
+//Convert object to map
+// whenever you need a map,
+// when you already have an object.
+console.log(Object.entries(openingHours));
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap);
 
-// Now, the fact that the set method
-// actually returns the updated map
-// allows us to change the set method like this.
-// So, again, calling the set method
-// returns the updated map.
-rest
-  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
-  .set('open', 11)
-  .set('close', 23)
-  .set(true, 'We are open :D')
-  .set(false, 'We are closed :(');
+// Next up, let's talk about iteration
+// and iteration is possible
+// on maps because as we already know,
+// maps are also iterables.
+// And so the for loop
+// is also available for them.
 
-//   Now, in order to read data from a map
-// we use the Get method.
-// And so, that get method is available on all the maps.
-// And so, all we need to do is to pass in the name of the key.
-console.log(rest.get('name'));
-console.log(rest.get(true)); //of course the data type of the key matters.
-console.log(rest.get(1));
+// The only difference is that for the object,
+// we needed object dot entries right here.
+// And that's just because the object
+// is not an alterable,
+// but then we converted it
+// to an alterable using object dot entries.
 
-// Now, this is as I said pretty clever,
-// but it's not really so readable.
-// So, don't overuse this kind of pattern, okay?
-// This just really goes to show the power
-// of having Booleans as map keys.
-const time = 8;
-console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+//Quiz app
+console.log(question.get('question'));
+for (const [key, value] of question) {
+  if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+}
 
-// Now, we can also check if a map contains a certain key.
-console.log(rest.has('categories'));
+// const answer = Number(prompt('Your answer'));
+const answer = 3;
+console.log(answer);
 
-// Then, we can also delete elements from the map.
-// And again, that happens based on the key.
-rest.delete(2);
-console.log(rest);
+// we are using the power of having Boolean values as keys,
+console.log(question.get(question.get('correct') === answer));
 
-// Now comparing this to objects,
-// we can actually also delete properties from objects
-// using something called the Delete Operator.
-// But, that's a really slow process.
-// And usually, it's not encouraged to do that here.
-// About the has method.
-// Actually, objects do also have a method
-// which is called hasOwnProperty.
-// But, we're gonna talk about that
-// in the object oriented programming section, all right?
+// as a side note,
+// sometimes we also need to convert a map back
+// to an array.
+// So basically to this structure,
+// and we can do that, like this.
+// So convert map
+// to array basically.
+// You can do that by simply building new array
+// and then unpacking again,
+// using the spread operator.
+// The question map,
+// it's asking us here again.
+// And so then the result is essentially
+// this same data structure.
+// So the array of arrays,
+// with which we started.
+// So it's this one here.
+// So in this case, of course,
+// this wouldn't make too much sense,
+// but it's still got to know that sometimes
+// you can convert a map to an array.
 
-//Next, maps also have the size property.
-console.log(rest.size);
-
-// And then, to finish, we can also clear.
-// So basically, remove all the elements from the map.
-// Let's just put that
-
-// rest.clear();
-console.log(rest);
-console.log(rest.size);
-
-// So, as you can see here,
-// there is some overlap in the way that we work
-// with maps and sets.
-// And, that's because they were both introduced in ES6.
-
-// And now just to finish,
-// let me show you that we can in fact use arrays
-// or objects as map keys.
-rest.set([1, 2], 'Test');
-console.log(rest);
-console.log(rest.size);
-
-// But now, to get the data based on that array
-
-// But, given what we learned
-// in the previous section
-// about how JavaScript works behind the scenes.
-// Especially, primitives versus objects.
-// Do you think that this will now retrieve Test?
-// Well, let's see.
-// And, no it did not.
-// And the reason for that,
-// is that these two arrays
-// are actually not the same object.
-// So, this array, and this one,
-// even though we wrote them in the same way
-// and so, they have the same elements,
-// they are not the same object in the heap, okay?
-
-// In order to make it work
-// we would have to do this.
-// Creating an array, one, two.
-// And then, we use that array.
-// And then, we also use the same array
-// to read the value out of the map.
-// And so now, it is gonna work, okay?
-// Because, now of course
-// these two refer to the same place in memory.
-
-const arr = [1, 2];
-rest.set(arr, 'Test');
-console.log(rest);
-console.log(rest.size);
-console.log(rest.get(arr));
-
-// Great, and so with this we proved
-// that we can indeed use objects as map keys.
-// And, this can be very useful with DOM elements
-// which, in fact are also nothing more than just
-// a special type of object.
-
-// And so, the result of this will be an object.
-// And so, let's say that this is the heading.
-// That now as we check it out here,
-// you will see that it's here indeed.
-// So, as I hover it
-// you can even see it here visible on the webpage.
-// You see that?
-// The highlight up there?
-// That exactly is the key of this map entry.
-// Sounds crazy, but it is possible
-// and it can enable some advanced functionality.
-rest.set(document.querySelector('h1', 'Heading'));
-console.log(rest);
+//Convert map to array
+console.log([...question]);
+console.log([question.entries()]);
+console.log([question.keys()]);
+console.log([question.values()]);
