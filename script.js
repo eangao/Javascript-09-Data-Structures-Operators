@@ -1692,6 +1692,269 @@
 // Sets
 ////////////////////////////////////////////////////////////////////
 
+// const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+// const openingHours = {
+//   [weekdays[3]]: {
+//     open: 12,
+//     close: 22,
+//   },
+//   [weekdays[4]]: {
+//     open: 11,
+//     close: 23,
+//   },
+
+//   [weekdays[5]]: {
+//     open: 0, // Open 24 hours
+//     close: 12 + 12,
+//   },
+// };
+
+// const restaurant = {
+//   name: 'Classico Italiano',
+//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+//   openingHours,
+
+//   // openingHours: {
+//   //   thu: {
+//   //     open: 12,
+//   //     close: 22,
+//   //   },
+//   //   fri: {
+//   //     open: 11,
+//   //     close: 23,
+//   //   },
+//   //   sat: {
+//   //     open: 0, // Open 24 hours
+//   //     close: 24,
+//   //   },
+//   // },
+
+//   order(starterIndex, mainIndex) {
+//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   },
+
+//   orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
+//     console.log(
+//       `Order recieved! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+//     );
+//   },
+
+//   orderPasta(ing1, ing2, ing3) {
+//     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+//   },
+
+//   orderPizza(mainIngredients, ...otherIngrdients) {
+//     console.log(mainIngredients);
+//     console.log(otherIngrdients);
+//   },
+// };
+
+// // In the past,
+// // JavaScript has always had very little
+// // built-in data structures.
+// // So basically, we only had objects and arrays.
+// // But in ES6, two more data structures
+// // were finally introduced.
+// // And that are. sets and maps.
+// // So these are pretty common data structures
+// // that already exists in other programming languages,
+// // and now, they also exist in JavaScript.
+// // So in this lecture, let's learn all about sets.
+// // And a set is basically just a collection
+// // of unique values.
+// // So that means that a set can never have any duplicates.
+// // And that property makes them useful
+// // in certain situations.
+
+// const orderSet = new Set([
+//   'Pasta',
+//   'Pizza',
+//   'Pizza',
+//   'Risotto',
+//   'Pasta',
+//   'Pizza',
+// ]);
+
+// console.log(orderSet);
+
+// // Now, also we can see that a set
+// // kind of looks similar to an array, right.
+// // So there are no key value pairs,
+// // it's just a bunch of values grouped together,
+// // in this case into a set.
+// // And just like arrays, sets are also iterables.
+// // Okay. Now, of course a set
+// // is still very different from an array.
+// // So first, because its elements are unique.
+// // And second, because the order
+// // of elements in the set is irrelevant.
+
+// // But anyway, keep in mind that strings
+// // are also iterables.
+// // So we can do this.
+// // So we can pass in a string.
+// // And so now we get a set
+// // with these five elements.
+// // So, and that's the five components basically
+// // of this iterable, which is the string.
+// console.log(new Set('Jonas'));
+
+// // And of course, the set could also be empty,
+// console.log(new Set());
+
+// // All right. And now let's learn how
+// // to actually work with sets.
+// // So first off, we can get the size of a set.
+// // And just note, how it is actually called size
+// // and to not length
+// // like it is in arrays.
+// // So don't make that confusion.
+// console.log(orderSet.size);
+
+// // Next, we can check if a certain element is in a set.
+// // And so, comparing again two arrays,
+// // this has method is similar
+// // to the includes method in arrays.
+// console.log(orderSet.has('Pizza'));
+// console.log(orderSet.has('Bread'));
+
+// // Next step,
+// // we can also add new elements to a set.
+// orderSet.add('Garlic Bread');
+// orderSet.add('Garlic Bread');
+// console.log(orderSet);
+
+// // Finally, we can also delete elements.
+// orderSet.delete('Risotto');
+// console.log(orderSet);
+
+// // And in arrays, there is actually no method
+// // that is this simple.
+// // We will see how to delete elements
+// // from arrays later.
+// // But I can tell you that it's a little bit more complex.
+
+// // But now you might ask,
+// // how do we actually retrieve values out of a set?
+// // Can we maybe use an index,
+// // like in a race?
+// // So doing something like, maybe like this here?
+// // And the answer, as we will see is no.
+// // So this doesn't work,
+// // it gives us undefined,
+// // no matter what number we put here.
+// // All right. And that is
+// // because in sets there are actually no indexes.
+// // And in fact, there is no way
+// // of getting values out of a set.
+// // And if we think about this,
+// // then it makes sense.
+// // So there's really no need for getting data out
+// // of a set. That's because if all values are unique,
+// // and if their order does not matter,
+// // then there is no point
+// // of retrieving values out of a set.
+// // All we need to know
+// // is whether a certain value
+// // is in the set or not.
+// // And that's why we have the has method.
+// // If your goal is to actually store values in order
+// // and then retrieve it,
+// // then the best use case, is to just use an array.
+// // You wouldn't use a set for that.
+// // And so again, there's no need
+// // for getting values out of a set,
+// // because if you need it, then you will just use an array.
+
+// // Finally, there is actually one more method here
+// // but it's not that important.
+// // All we can use it for is
+// // to basically delete all of the elements
+// // of the set.
+// // And so we see that now it is empty, right.
+// // But let's put that back,
+// // so that we can work some more with a set.
+
+// // orderSet.clear();
+// console.log(orderSet);
+
+// // So as I said, in the beginning,
+// // sets are also iterables.
+// // And therefore, we can loop over them.
+// // So looping is possible,
+// // just like in any other iterable.
+// // All right, so now that we know how to work with sets,
+// for (const order of orderSet) console.log(order);
+
+// // let's see a big use case for them right now.
+// // So in a normal code base,
+// // the main use case of sets is actually
+
+// // EXample
+// const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+
+// const staffUnique1 = new Set(staff);
+// console.log(staffUnique1);
+
+// // But now we actually want this
+// // to be an array.
+// // But the conversion from a set
+// // to an array is pretty easy,
+// // because they're both iterables.
+// // So remember from earlier
+// // that the spread operator works
+// // on all iterables. Right?
+// // So that includes sets.
+// // And so we can now create an array around this basically.
+// // And then we can unpack
+// // this entire set here
+// // using the spread operator,
+// // and then these elements will be put
+// // into the newly constructed array. Okay.
+// const staffUnique2 = [...new Set(staff)];
+// console.log(staffUnique2);
+
+// console.log(
+//   new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size
+// );
+
+// // And the same could even be done with counting,
+// // how many different letters there are in a string, right.
+// // Because an iterable,
+// // or actually a string is also an iterable.
+// // So let's see how many different letters there
+// console.log(new Set('Elmaralmoceraangao').size);
+
+// // All right. So as a conclusion
+// // to this video sets are not intended
+// // to replace arrays at all.
+// // So whenever you need to store values in order,
+// // and that might contain duplicates,
+// // always just use arrays.
+// // That's also true when you need
+// // to really manipulate data,
+// // because arrays have access to a lot
+// // of great array methods
+// // that we're going to study a little bit later.
+
+// // Now sets have this very useful property
+// // of being unique.
+// // And it's also very easy to interact
+// // with sets by using all
+// // of their straightforward methods.
+// // However, they are not nearly as important as arrays.
+// // So keep sets in mind when you need to work
+// // with unique values.
+// // But besides that, you can just continue using arrays.
+
+////////////////////////////////////////////////////////////////////
+// Maps: Fundamentals
+////////////////////////////////////////////////////////////////////
+
 const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
 const openingHours = {
@@ -1753,200 +2016,167 @@ const restaurant = {
   },
 };
 
-// In the past,
-// JavaScript has always had very little
-// built-in data structures.
-// So basically, we only had objects and arrays.
-// But in ES6, two more data structures
-// were finally introduced.
-// And that are. sets and maps.
-// So these are pretty common data structures
-// that already exists in other programming languages,
-// and now, they also exist in JavaScript.
-// So in this lecture, let's learn all about sets.
-// And a set is basically just a collection
-// of unique values.
-// So that means that a set can never have any duplicates.
-// And that property makes them useful
-// in certain situations.
+// Now, it's time to learn
+// about the other new JavaScript data structure
+// and that is maps.
+// And, let me start by telling you
+// that maps are a lot more useful than sets.
+// So what exactly is a map?
+// Well, it's certainly not the same thing
+// that we use in the real life
+// to find our ways around.
+// Now, instead in JavaScript,
+// a map is a data structure
+// that we can use to map values to keys.
+// So, just like an object
+// data is stored in key value pairs in maps.
+// Now, the big difference between objects and maps
+// is that in maps, the keys can have any type
+// and this can be huge.
+// So, in objects, the keys are basically always strings.
+// But in maps, we can have any type of key.
+// It could even be objects, or arrays, or other maps.
+// So, that can lead to some really great and advanced stuff.
 
-const orderSet = new Set([
-  'Pasta',
-  'Pizza',
-  'Pizza',
-  'Risotto',
-  'Pasta',
-  'Pizza',
-]);
+// And the easiest way to create a map
+// is to actually create an empty map
+const rest = new Map();
 
-console.log(orderSet);
+// And then, to fill up the map
+// we can use the set method.
+// And then here, we pass into arguments.
+// The first is the key name.
 
-// Now, also we can see that a set
-// kind of looks similar to an array, right.
-// So there are no key value pairs,
-// it's just a bunch of values grouped together,
-// in this case into a set.
-// And just like arrays, sets are also iterables.
-// Okay. Now, of course a set
-// is still very different from an array.
-// So first, because its elements are unique.
-// And second, because the order
-// of elements in the set is irrelevant.
+// And, so you see, that this set method is pretty similar
+// to the add method that we had in sets.
+rest.set('name', 'Classico Italiano');
 
-// But anyway, keep in mind that strings
-// are also iterables.
-// So we can do this.
-// So we can pass in a string.
-// And so now we get a set
-// with these five elements.
-// So, and that's the five components basically
-// of this iterable, which is the string.
-console.log(new Set('Jonas'));
+// And, remember that we can use any data type that we want.
+// So, let's say that the restaurant has two locations.
+// So, we can create a key with a number.
+// It doesn't have to be a string.
+rest.set(1, 'Firenze, Italy');
+console.log(rest.set(2, 'Lisbon, Portugal'));
 
-// And of course, the set could also be empty,
-console.log(new Set());
+// Now, the fact that the set method
+// actually returns the updated map
+// allows us to change the set method like this.
+// So, again, calling the set method
+// returns the updated map.
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open :D')
+  .set(false, 'We are closed :(');
 
-// All right. And now let's learn how
-// to actually work with sets.
-// So first off, we can get the size of a set.
-// And just note, how it is actually called size
-// and to not length
-// like it is in arrays.
-// So don't make that confusion.
-console.log(orderSet.size);
+//   Now, in order to read data from a map
+// we use the Get method.
+// And so, that get method is available on all the maps.
+// And so, all we need to do is to pass in the name of the key.
+console.log(rest.get('name'));
+console.log(rest.get(true)); //of course the data type of the key matters.
+console.log(rest.get(1));
 
-// Next, we can check if a certain element is in a set.
-// And so, comparing again two arrays,
-// this has method is similar
-// to the includes method in arrays.
-console.log(orderSet.has('Pizza'));
-console.log(orderSet.has('Bread'));
+// Now, this is as I said pretty clever,
+// but it's not really so readable.
+// So, don't overuse this kind of pattern, okay?
+// This just really goes to show the power
+// of having Booleans as map keys.
+const time = 8;
+console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
 
-// Next step,
-// we can also add new elements to a set.
-orderSet.add('Garlic Bread');
-orderSet.add('Garlic Bread');
-console.log(orderSet);
+// Now, we can also check if a map contains a certain key.
+console.log(rest.has('categories'));
 
-// Finally, we can also delete elements.
-orderSet.delete('Risotto');
-console.log(orderSet);
+// Then, we can also delete elements from the map.
+// And again, that happens based on the key.
+rest.delete(2);
+console.log(rest);
 
-// And in arrays, there is actually no method
-// that is this simple.
-// We will see how to delete elements
-// from arrays later.
-// But I can tell you that it's a little bit more complex.
+// Now comparing this to objects,
+// we can actually also delete properties from objects
+// using something called the Delete Operator.
+// But, that's a really slow process.
+// And usually, it's not encouraged to do that here.
+// About the has method.
+// Actually, objects do also have a method
+// which is called hasOwnProperty.
+// But, we're gonna talk about that
+// in the object oriented programming section, all right?
 
-// But now you might ask,
-// how do we actually retrieve values out of a set?
-// Can we maybe use an index,
-// like in a race?
-// So doing something like, maybe like this here?
-// And the answer, as we will see is no.
-// So this doesn't work,
-// it gives us undefined,
-// no matter what number we put here.
-// All right. And that is
-// because in sets there are actually no indexes.
-// And in fact, there is no way
-// of getting values out of a set.
-// And if we think about this,
-// then it makes sense.
-// So there's really no need for getting data out
-// of a set. That's because if all values are unique,
-// and if their order does not matter,
-// then there is no point
-// of retrieving values out of a set.
-// All we need to know
-// is whether a certain value
-// is in the set or not.
-// And that's why we have the has method.
-// If your goal is to actually store values in order
-// and then retrieve it,
-// then the best use case, is to just use an array.
-// You wouldn't use a set for that.
-// And so again, there's no need
-// for getting values out of a set,
-// because if you need it, then you will just use an array.
+//Next, maps also have the size property.
+console.log(rest.size);
 
-// Finally, there is actually one more method here
-// but it's not that important.
-// All we can use it for is
-// to basically delete all of the elements
-// of the set.
-// And so we see that now it is empty, right.
-// But let's put that back,
-// so that we can work some more with a set.
+// And then, to finish, we can also clear.
+// So basically, remove all the elements from the map.
+// Let's just put that
 
-// orderSet.clear();
-console.log(orderSet);
+// rest.clear();
+console.log(rest);
+console.log(rest.size);
 
-// So as I said, in the beginning,
-// sets are also iterables.
-// And therefore, we can loop over them.
-// So looping is possible,
-// just like in any other iterable.
-// All right, so now that we know how to work with sets,
-for (const order of orderSet) console.log(order);
+// So, as you can see here,
+// there is some overlap in the way that we work
+// with maps and sets.
+// And, that's because they were both introduced in ES6.
 
-// let's see a big use case for them right now.
-// So in a normal code base,
-// the main use case of sets is actually
+// And now just to finish,
+// let me show you that we can in fact use arrays
+// or objects as map keys.
+rest.set([1, 2], 'Test');
+console.log(rest);
+console.log(rest.size);
 
-// EXample
-const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+// But now, to get the data based on that array
 
-const staffUnique1 = new Set(staff);
-console.log(staffUnique1);
+// But, given what we learned
+// in the previous section
+// about how JavaScript works behind the scenes.
+// Especially, primitives versus objects.
+// Do you think that this will now retrieve Test?
+// Well, let's see.
+// And, no it did not.
+// And the reason for that,
+// is that these two arrays
+// are actually not the same object.
+// So, this array, and this one,
+// even though we wrote them in the same way
+// and so, they have the same elements,
+// they are not the same object in the heap, okay?
 
-// But now we actually want this
-// to be an array.
-// But the conversion from a set
-// to an array is pretty easy,
-// because they're both iterables.
-// So remember from earlier
-// that the spread operator works
-// on all iterables. Right?
-// So that includes sets.
-// And so we can now create an array around this basically.
-// And then we can unpack
-// this entire set here
-// using the spread operator,
-// and then these elements will be put
-// into the newly constructed array. Okay.
-const staffUnique2 = [...new Set(staff)];
-console.log(staffUnique2);
+// In order to make it work
+// we would have to do this.
+// Creating an array, one, two.
+// And then, we use that array.
+// And then, we also use the same array
+// to read the value out of the map.
+// And so now, it is gonna work, okay?
+// Because, now of course
+// these two refer to the same place in memory.
 
-console.log(
-  new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size
-);
+const arr = [1, 2];
+rest.set(arr, 'Test');
+console.log(rest);
+console.log(rest.size);
+console.log(rest.get(arr));
 
-// And the same could even be done with counting,
-// how many different letters there are in a string, right.
-// Because an iterable,
-// or actually a string is also an iterable.
-// So let's see how many different letters there
-console.log(new Set('Elmaralmoceraangao').size);
+// Great, and so with this we proved
+// that we can indeed use objects as map keys.
+// And, this can be very useful with DOM elements
+// which, in fact are also nothing more than just
+// a special type of object.
 
-// All right. So as a conclusion
-// to this video sets are not intended
-// to replace arrays at all.
-// So whenever you need to store values in order,
-// and that might contain duplicates,
-// always just use arrays.
-// That's also true when you need
-// to really manipulate data,
-// because arrays have access to a lot
-// of great array methods
-// that we're going to study a little bit later.
-
-// Now sets have this very useful property
-// of being unique.
-// And it's also very easy to interact
-// with sets by using all
-// of their straightforward methods.
-// However, they are not nearly as important as arrays.
-// So keep sets in mind when you need to work
-// with unique values.
-// But besides that, you can just continue using arrays.
+// And so, the result of this will be an object.
+// And so, let's say that this is the heading.
+// That now as we check it out here,
+// you will see that it's here indeed.
+// So, as I hover it
+// you can even see it here visible on the webpage.
+// You see that?
+// The highlight up there?
+// That exactly is the key of this map entry.
+// Sounds crazy, but it is possible
+// and it can enable some advanced functionality.
+rest.set(document.querySelector('h1', 'Heading'));
+console.log(rest);
