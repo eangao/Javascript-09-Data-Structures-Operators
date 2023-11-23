@@ -2535,100 +2535,179 @@
 // Working With Strings - Part 2
 ////////////////////////////////////////////////////////////////////
 
-const airline = 'TAP Air Portugal';
+// const airline = 'TAP Air Portugal';
 
-console.log(airline.toLowerCase());
-console.log(airline.toUpperCase());
+// console.log(airline.toLowerCase());
+// console.log(airline.toUpperCase());
 
-// Fix capitalization in name
-const passenger = 'jOnAS'; //Jonas
-const passengerLower = passenger.toLowerCase();
-const passengerCorrect =
-  passengerLower[0].toLowerCase() + passengerLower.slice(1);
+// // Fix capitalization in name
+// const passenger = 'jOnAS'; //Jonas
+// const passengerLower = passenger.toLowerCase();
+// const passengerCorrect =
+//   passengerLower[0].toLowerCase() + passengerLower.slice(1);
 
-console.log(passengerCorrect);
+// console.log(passengerCorrect);
 
-// Comparing email
-const email = 'hello@jonas.io';
-const loginEmail = ' Hello@Jonas.Io \n';
+// // Comparing email
+// const email = 'hello@jonas.io';
+// const loginEmail = ' Hello@Jonas.Io \n';
 
-const lowerEmail = loginEmail.toLowerCase();
-const trimmedEmail = lowerEmail.trim();
-console.log(trimmedEmail);
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimmedEmail = lowerEmail.trim();
+// console.log(trimmedEmail);
 
-const normalizedEmail = loginEmail.toLowerCase().trim();
-console.log(normalizedEmail);
+// const normalizedEmail = loginEmail.toLowerCase().trim();
+// console.log(normalizedEmail);
 
-console.log(email === normalizedEmail);
+// console.log(email === normalizedEmail);
 
-// By the way, here, since ES2019, there's also trim start
-// and trim end, which as their names say,
-// you can use to trim wide space only from the start
-// of the string or only from the end.
+// // By the way, here, since ES2019, there's also trim start
+// // and trim end, which as their names say,
+// // you can use to trim wide space only from the start
+// // of the string or only from the end.
 
-// Next up, let's learn one of the most important thing
-// about strings, which is to replace parts of strings.
-// So replacing.
+// // Next up, let's learn one of the most important thing
+// // about strings, which is to replace parts of strings.
+// // So replacing.
 
-//replacing
-const priceGB = '288,97£'; //Gb great britain
-const priceUS = priceGB.replace('£', '$').replace(',', '.');
-console.log(priceUS);
+// //replacing
+// const priceGB = '288,97£'; //Gb great britain
+// const priceUS = priceGB.replace('£', '$').replace(',', '.');
+// console.log(priceUS);
 
-const announcement =
-  'All passengers come to bording door 23. Borading door 23!';
+// const announcement =
+//   'All passengers come to bording door 23. Borading door 23!';
 
-console.log(announcement.replace('door', 'gate'));
-console.log(announcement.replaceAll('door', 'gate'));
+// console.log(announcement.replace('door', 'gate'));
+// console.log(announcement.replaceAll('door', 'gate'));
 
-// But for me, it doesn't work yet,
-// but there is still another solution,
-// which is to use something called a regular expression.
-// Now, regular expressions are one of the most complex
-// and confusing topics of programming,
-// but we will still take a short look at him
-// at some point in the course.
-// But for now, we are just gonna use
-// a very simple regular expression to tell the replace method
-// that it should actually target all the occurrences
-// of door here and not just the first one.
+// // But for me, it doesn't work yet,
+// // but there is still another solution,
+// // which is to use something called a regular expression.
+// // Now, regular expressions are one of the most complex
+// // and confusing topics of programming,
+// // but we will still take a short look at him
+// // at some point in the course.
+// // But for now, we are just gonna use
+// // a very simple regular expression to tell the replace method
+// // that it should actually target all the occurrences
+// // of door here and not just the first one.
 
-console.log(announcement.replace(/door/g, 'gate')); //g flag
+// console.log(announcement.replace(/door/g, 'gate')); //g flag
 
-//Booleans
+// //Booleans
 
-// Now, as a final topic of this lecture,
-// there are three simple methods that return booleans.
-// So Booleans.
-// Okay.
-// These methods are includes starts with and ends with.
+// // Now, as a final topic of this lecture,
+// // there are three simple methods that return booleans.
+// // So Booleans.
+// // Okay.
+// // These methods are includes starts with and ends with.
 
-const plane = 'Airbus A320neo';
-console.log(plane.includes('A320'));
-console.log(plane.includes('Boeing'));
+// const plane = 'Airbus A320neo';
+// console.log(plane.includes('A320'));
+// console.log(plane.includes('Boeing'));
 
-console.log(plane.startsWith('Air'));
+// console.log(plane.startsWith('Air'));
 
-if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
-  console.log('Part of the NEW Airbus family');
-}
+// if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+//   console.log('Part of the NEW Airbus family');
+// }
 
-// practice exercise
+// // practice exercise
 
-// that when we receive input from a user,
-// we usually always start by putting everything
-// into lower case, okay?
-// Because that makes it a lot easier
-// to then compare it to something.
-const checkBaggage = function (items) {
-  const baggage = items.toLowerCase();
-  if (baggage.includes('knife') || baggage.includes('gun')) {
-    console.log('You are NOT alowed on board');
-  } else {
-    console.log('Welcome aboard!');
+// // that when we receive input from a user,
+// // we usually always start by putting everything
+// // into lower case, okay?
+// // Because that makes it a lot easier
+// // to then compare it to something.
+// const checkBaggage = function (items) {
+//   const baggage = items.toLowerCase();
+//   if (baggage.includes('knife') || baggage.includes('gun')) {
+//     console.log('You are NOT alowed on board');
+//   } else {
+//     console.log('Welcome aboard!');
+//   }
+// };
+
+// checkBaggage('I have a laptop, some Food and a pocket Knife');
+// checkBaggage('Socks and camera');
+// checkBaggage('Got some snacks and a gun for protection');
+
+///////////////////////////////////////////////////////////////
+// Working With Strings - Part 3
+///////////////////////////////////////////////////////////////
+
+//Split and join
+console.log('a+very+nice+string'.split('+'));
+
+console.log('Elmar Angao'.split(' '));
+
+const [firstName, lastName] = 'Elmar Angao'.split(' ');
+
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
+
+const capitalizeName = function (name) {
+  const names = name.split(' ');
+  const namesUpper = [];
+
+  for (const n of names) {
+    // So that's a completely different approach
+    // than this one here,
+    // but it gives us the same result.
+    // namesUpper.push(n[0].toUpperCase() + n.slice(1));
+    namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
   }
+
+  console.log(namesUpper.join(' '));
 };
 
-checkBaggage('I have a laptop, some Food and a pocket Knife');
-checkBaggage('Socks and camera');
-checkBaggage('Got some snacks and a gun for protection');
+capitalizeName('jessica ann smith davis');
+capitalizeName('elmar angao');
+
+// Now here's a small challenge for you
+// because there is another way of doing this.
+// So basically of doing the capitalization of one name.
+// So given what we already learned
+// and especially in the last lecture
+// can you think of a different way of doing this?
+
+//padding
+const message = 'Go to gate 23!';
+console.log(message.padStart(20, '+').padEnd(30, '+'));
+console.log('Jonas'.padStart(20, '+').padEnd(30, '+'));
+
+//
+
+// and let's start by converting this number to a string.
+// So string,
+// now we learned how to convert a number to a string
+// in the fundamental section, right?
+const maskCreditCard = function (number) {
+  // const str = String(number);
+
+  //easiest trick to convert to string
+  const str = number + '';
+
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+};
+
+console.log(maskCreditCard(45626));
+console.log(maskCreditCard(43378463864647384));
+console.log(maskCreditCard('489434546749876513469'));
+
+//Repeat
+const message2 = 'Bad weather... All Departures Delayed... ';
+console.log(message2.repeat(5));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in the line ${'✈'.repeat(n)}`);
+};
+
+planesInLine(5);
+planesInLine(3);
+planesInLine(12);
+
+//source for other method
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
