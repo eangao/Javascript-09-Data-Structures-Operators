@@ -2422,111 +2422,213 @@
 // Working With Strings - Part 1
 /////////////////////////////////////////////////////////////////////
 
+// const airline = 'TAP Air Portugal';
+// const plane = 'A320';
+
+// console.log(plane[0]);
+// console.log(plane[1]);
+// console.log(plane[2]);
+// console.log('B737'[0]);
+
+// console.log(airline.length);
+// console.log('B737'.length);
+
+// // So again comparing strings to arrays here,
+// // strings also have methods
+// // and some of them are quite similar to the array methods.
+// // So one of them is the index off.
+// console.log(airline.indexOf('r'));
+// console.log(airline.lastIndexOf('r'));
+// console.log(airline.indexOf('Portugal')); //case sensitive
+
+// // All right now, what can we actually do with these indexes?
+// // Why are they useful?
+// // Well, one good use case is to extract part
+// // of a string using the slice method
+// // and a slice method needs indexes as arguments.
+// // And so therefore sometimes it can be very useful
+// // to first figure out the index of part of a string
+// // to then extract that.
+// // So let's see how the slice method works.
+
+// // And this result that we get here,
+// // so just this here is called a substring
+// // because it's just a part of the original string.
+// // Now this does not change the underlying string okay?
+// // Just keep that in mind.
+// // That's because it's actually impossible to mutate strings.
+// // They are primitives, right?
+// // So if we wanted to use this string
+// // now we would have to store it first into some variable
+// // or some data structure.
+
+// // Okay, so this method here and all the other ones
+// // that we're gonna talk about always return a new string.
+// console.log(airline.slice(4));
+
+// // Now, besides the begin parameter that we already specified,
+// // we can also specify an end parameter.
+// // So let's try seven and see the result.
+// // And so now we only got air.
+// // Okay so this one is four, then five, six
+// // and seven is the space here.
+// // And so what this means is that the end value
+// // is actually not included in the string.
+// // All right so basically it stops extracting
+// // before reaching index number seven.
+// // And that's really important to keep in mind.
+
+// // And just as a side note,
+// // the length of the extracted string
+// // is always going to be end minus the beginning
+// console.log(airline.slice(4, 7));
+
+// // So that's the fundamentals of the slice method,
+// console.log(airline.slice(0, airline.indexOf(' ')));
+// console.log(airline.slice(airline.lastIndexOf(' ') + 1)); //plus 1 to remove the space
+
+// // and then it will start counting from the end.
+// // Or actually start extracting from the end.
+// console.log(airline.slice(-2));
+
+// console.log(airline.slice(1, -1));
+
+// const checkMiddleSeat = function (seat) {
+//   // B and E are middle seats
+//   const s = seat.slice(-1);
+
+//   if (s === 'B' || s === 'E') console.log('You got the middle seat 😥');
+//   else console.log('You got lucky 😍');
+// };
+
+// checkMiddleSeat('11B');
+// checkMiddleSeat('23C');
+// checkMiddleSeat('3E');
+
+// // So we know that strings are just primitives.
+// // So why do they have methods?
+// // Shouldn't methods only be available
+// // on objects such as a race?
+// // Well that is actually true.
+// // However, JavaScript is really smart.
+// // And so here is how this works.
+// // Whenever we call a method on a string,
+// // JavaScript will automatically behind the scenes
+// // convert that string primitive to a string object
+// // with the same content.
+// // And then it's on that object where the methods are called.
+
+// // All right and this process is called boxing
+// // because it basically takes our string
+// // and puts it into a box
+// // which is the object.
+// // So basically what happens is this.
+// // So what JavaScript does,
+// // is to call this string function here.
+
+// console.log(new String('Elmar'));
+// console.log(typeof new String('Elmar'));
+
+// console.log(typeof new String('Elmar').slice(1));
+
+////////////////////////////////////////////////////////////////////
+// Working With Strings - Part 2
+////////////////////////////////////////////////////////////////////
+
 const airline = 'TAP Air Portugal';
-const plane = 'A320';
 
-console.log(plane[0]);
-console.log(plane[1]);
-console.log(plane[2]);
-console.log('B737'[0]);
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
 
-console.log(airline.length);
-console.log('B737'.length);
+// Fix capitalization in name
+const passenger = 'jOnAS'; //Jonas
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect =
+  passengerLower[0].toLowerCase() + passengerLower.slice(1);
 
-// So again comparing strings to arrays here,
-// strings also have methods
-// and some of them are quite similar to the array methods.
-// So one of them is the index off.
-console.log(airline.indexOf('r'));
-console.log(airline.lastIndexOf('r'));
-console.log(airline.indexOf('Portugal')); //case sensitive
+console.log(passengerCorrect);
 
-// All right now, what can we actually do with these indexes?
-// Why are they useful?
-// Well, one good use case is to extract part
-// of a string using the slice method
-// and a slice method needs indexes as arguments.
-// And so therefore sometimes it can be very useful
-// to first figure out the index of part of a string
-// to then extract that.
-// So let's see how the slice method works.
+// Comparing email
+const email = 'hello@jonas.io';
+const loginEmail = ' Hello@Jonas.Io \n';
 
-// And this result that we get here,
-// so just this here is called a substring
-// because it's just a part of the original string.
-// Now this does not change the underlying string okay?
-// Just keep that in mind.
-// That's because it's actually impossible to mutate strings.
-// They are primitives, right?
-// So if we wanted to use this string
-// now we would have to store it first into some variable
-// or some data structure.
+const lowerEmail = loginEmail.toLowerCase();
+const trimmedEmail = lowerEmail.trim();
+console.log(trimmedEmail);
 
-// Okay, so this method here and all the other ones
-// that we're gonna talk about always return a new string.
-console.log(airline.slice(4));
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail);
 
-// Now, besides the begin parameter that we already specified,
-// we can also specify an end parameter.
-// So let's try seven and see the result.
-// And so now we only got air.
-// Okay so this one is four, then five, six
-// and seven is the space here.
-// And so what this means is that the end value
-// is actually not included in the string.
-// All right so basically it stops extracting
-// before reaching index number seven.
-// And that's really important to keep in mind.
+console.log(email === normalizedEmail);
 
-// And just as a side note,
-// the length of the extracted string
-// is always going to be end minus the beginning
-console.log(airline.slice(4, 7));
+// By the way, here, since ES2019, there's also trim start
+// and trim end, which as their names say,
+// you can use to trim wide space only from the start
+// of the string or only from the end.
 
-// So that's the fundamentals of the slice method,
-console.log(airline.slice(0, airline.indexOf(' ')));
-console.log(airline.slice(airline.lastIndexOf(' ') + 1)); //plus 1 to remove the space
+// Next up, let's learn one of the most important thing
+// about strings, which is to replace parts of strings.
+// So replacing.
 
-// and then it will start counting from the end.
-// Or actually start extracting from the end.
-console.log(airline.slice(-2));
+//replacing
+const priceGB = '288,97£'; //Gb great britain
+const priceUS = priceGB.replace('£', '$').replace(',', '.');
+console.log(priceUS);
 
-console.log(airline.slice(1, -1));
+const announcement =
+  'All passengers come to bording door 23. Borading door 23!';
 
-const checkMiddleSeat = function (seat) {
-  // B and E are middle seats
-  const s = seat.slice(-1);
+console.log(announcement.replace('door', 'gate'));
+console.log(announcement.replaceAll('door', 'gate'));
 
-  if (s === 'B' || s === 'E') console.log('You got the middle seat 😥');
-  else console.log('You got lucky 😍');
+// But for me, it doesn't work yet,
+// but there is still another solution,
+// which is to use something called a regular expression.
+// Now, regular expressions are one of the most complex
+// and confusing topics of programming,
+// but we will still take a short look at him
+// at some point in the course.
+// But for now, we are just gonna use
+// a very simple regular expression to tell the replace method
+// that it should actually target all the occurrences
+// of door here and not just the first one.
+
+console.log(announcement.replace(/door/g, 'gate')); //g flag
+
+//Booleans
+
+// Now, as a final topic of this lecture,
+// there are three simple methods that return booleans.
+// So Booleans.
+// Okay.
+// These methods are includes starts with and ends with.
+
+const plane = 'Airbus A320neo';
+console.log(plane.includes('A320'));
+console.log(plane.includes('Boeing'));
+
+console.log(plane.startsWith('Air'));
+
+if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+  console.log('Part of the NEW Airbus family');
+}
+
+// practice exercise
+
+// that when we receive input from a user,
+// we usually always start by putting everything
+// into lower case, okay?
+// Because that makes it a lot easier
+// to then compare it to something.
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+    console.log('You are NOT alowed on board');
+  } else {
+    console.log('Welcome aboard!');
+  }
 };
 
-checkMiddleSeat('11B');
-checkMiddleSeat('23C');
-checkMiddleSeat('3E');
-
-// So we know that strings are just primitives.
-// So why do they have methods?
-// Shouldn't methods only be available
-// on objects such as a race?
-// Well that is actually true.
-// However, JavaScript is really smart.
-// And so here is how this works.
-// Whenever we call a method on a string,
-// JavaScript will automatically behind the scenes
-// convert that string primitive to a string object
-// with the same content.
-// And then it's on that object where the methods are called.
-
-// All right and this process is called boxing
-// because it basically takes our string
-// and puts it into a box
-// which is the object.
-// So basically what happens is this.
-// So what JavaScript does,
-// is to call this string function here.
-
-console.log(new String('Elmar'));
-console.log(typeof new String('Elmar'));
-
-console.log(typeof new String('Elmar').slice(1));
+checkBaggage('I have a laptop, some Food and a pocket Knife');
+checkBaggage('Socks and camera');
+checkBaggage('Got some snacks and a gun for protection');
