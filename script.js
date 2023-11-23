@@ -2637,77 +2637,140 @@
 // Working With Strings - Part 3
 ///////////////////////////////////////////////////////////////
 
-//Split and join
-console.log('a+very+nice+string'.split('+'));
+// //Split and join
+// console.log('a+very+nice+string'.split('+'));
 
-console.log('Elmar Angao'.split(' '));
+// console.log('Elmar Angao'.split(' '));
 
-const [firstName, lastName] = 'Elmar Angao'.split(' ');
+// const [firstName, lastName] = 'Elmar Angao'.split(' ');
 
-const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
-console.log(newName);
+// const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+// console.log(newName);
 
-const capitalizeName = function (name) {
-  const names = name.split(' ');
-  const namesUpper = [];
+// const capitalizeName = function (name) {
+//   const names = name.split(' ');
+//   const namesUpper = [];
 
-  for (const n of names) {
-    // So that's a completely different approach
-    // than this one here,
-    // but it gives us the same result.
-    // namesUpper.push(n[0].toUpperCase() + n.slice(1));
-    namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
+//   for (const n of names) {
+//     // So that's a completely different approach
+//     // than this one here,
+//     // but it gives us the same result.
+//     // namesUpper.push(n[0].toUpperCase() + n.slice(1));
+//     namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
+//   }
+
+//   console.log(namesUpper.join(' '));
+// };
+
+// capitalizeName('jessica ann smith davis');
+// capitalizeName('elmar angao');
+
+// // Now here's a small challenge for you
+// // because there is another way of doing this.
+// // So basically of doing the capitalization of one name.
+// // So given what we already learned
+// // and especially in the last lecture
+// // can you think of a different way of doing this?
+
+// //padding
+// const message = 'Go to gate 23!';
+// console.log(message.padStart(20, '+').padEnd(30, '+'));
+// console.log('Jonas'.padStart(20, '+').padEnd(30, '+'));
+
+// //
+
+// // and let's start by converting this number to a string.
+// // So string,
+// // now we learned how to convert a number to a string
+// // in the fundamental section, right?
+// const maskCreditCard = function (number) {
+//   // const str = String(number);
+
+//   //easiest trick to convert to string
+//   const str = number + '';
+
+//   const last = str.slice(-4);
+//   return last.padStart(str.length, '*');
+// };
+
+// console.log(maskCreditCard(45626));
+// console.log(maskCreditCard(43378463864647384));
+// console.log(maskCreditCard('489434546749876513469'));
+
+// //Repeat
+// const message2 = 'Bad weather... All Departures Delayed... ';
+// console.log(message2.repeat(5));
+
+// const planesInLine = function (n) {
+//   console.log(`There are ${n} planes in the line ${'✈'.repeat(n)}`);
+// };
+
+// planesInLine(5);
+// planesInLine(3);
+// planesInLine(12);
+
+// //source for other method
+// // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
+
+////////////////////////////////////////////////////////////
+// Coding Challenge #4
+////////////////////////////////////////////////////////////
+
+// Write a program that receives a list of variable names written in underscore_case
+// and convert them to camelCase.
+// The input will come from a textarea inserted into the DOM (see code below to
+// insert the elements), and conversion will happen when the button is pressed.
+
+// Test data (pasted to textarea, including spaces):
+// underscore_case
+// first_name
+// Some_Variable
+//  calculate_AGE
+// delayed_departure
+
+// Should produce this output (5 separate console.log outputs):
+// underscoreCase   ✅
+// firstName        ✅✅
+// someVariable     ✅✅✅
+// calculateAge     ✅✅✅✅
+// delayedDeparture ✅✅✅✅✅
+
+// Hints:
+// § Remember which character defines a new line in the textarea �
+// § The solution only needs to work for a variable made out of 2 words, like a_b
+// § Start without worrying about the ✅. Tackle that only after you have the variable
+// name conversion working �
+// § This challenge is difficult on purpose, so start watching the solution in case
+// you're stuck. Then pause and continue!
+
+// Afterwards, test with your own test data!
+// GOOD LUCK �
+
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+
+  const rows = text.split('\n');
+  console.log(rows);
+
+  for (const [i, row] of rows.entries()) {
+    const [first, second] = row.toLowerCase().trim().split('_');
+
+    const output = `${first}${second.replace(
+      second[0],
+      second[0].toUpperCase()
+    )}`;
+
+    console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
   }
+});
 
-  console.log(namesUpper.join(' '));
-};
-
-capitalizeName('jessica ann smith davis');
-capitalizeName('elmar angao');
-
-// Now here's a small challenge for you
-// because there is another way of doing this.
-// So basically of doing the capitalization of one name.
-// So given what we already learned
-// and especially in the last lecture
-// can you think of a different way of doing this?
-
-//padding
-const message = 'Go to gate 23!';
-console.log(message.padStart(20, '+').padEnd(30, '+'));
-console.log('Jonas'.padStart(20, '+').padEnd(30, '+'));
-
-//
-
-// and let's start by converting this number to a string.
-// So string,
-// now we learned how to convert a number to a string
-// in the fundamental section, right?
-const maskCreditCard = function (number) {
-  // const str = String(number);
-
-  //easiest trick to convert to string
-  const str = number + '';
-
-  const last = str.slice(-4);
-  return last.padStart(str.length, '*');
-};
-
-console.log(maskCreditCard(45626));
-console.log(maskCreditCard(43378463864647384));
-console.log(maskCreditCard('489434546749876513469'));
-
-//Repeat
-const message2 = 'Bad weather... All Departures Delayed... ';
-console.log(message2.repeat(5));
-
-const planesInLine = function (n) {
-  console.log(`There are ${n} planes in the line ${'✈'.repeat(n)}`);
-};
-
-planesInLine(5);
-planesInLine(3);
-planesInLine(12);
-
-//source for other method
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
+// we are going to use the current index in each iteration.
+// Now remember how we can get access
+// to the current index in the for of loop.
+// So we're looping over an array here,
+// and so to get the current index,
+// we need to actually use the entries
+// of the array, remember that?
