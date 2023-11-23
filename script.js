@@ -2360,60 +2360,173 @@
 // Coding Challenge #3
 //////////////////////////////////////////////////////////////////////////
 
-// Let's continue with our football betting app! This time, we have a map called
-// 'gameEvents' (see below) with a log of the events that happened during the
-// game. The values are the events themselves, and the keys are the minutes in which
-// each event happened (a football game has 90 minutes plus some extra time).
-// Your tasks:
+// // Let's continue with our football betting app! This time, we have a map called
+// // 'gameEvents' (see below) with a log of the events that happened during the
+// // game. The values are the events themselves, and the keys are the minutes in which
+// // each event happened (a football game has 90 minutes plus some extra time).
+// // Your tasks:
 
-// 1. Create an array 'events' of the different game events that happened (no
-// duplicates)
+// // 1. Create an array 'events' of the different game events that happened (no
+// // duplicates)
 
-// 2. After the game has finished, is was found that the yellow card from minute 64
-// was unfair. So remove this event from the game events log.
+// // 2. After the game has finished, is was found that the yellow card from minute 64
+// // was unfair. So remove this event from the game events log.
 
-// 3. Compute and log the following string to the console: "An event happened, on
-// average, every 9 minutes" (keep in mind that a game has 90 minutes)
+// // 3. Compute and log the following string to the console: "An event happened, on
+// // average, every 9 minutes" (keep in mind that a game has 90 minutes)
 
-// 4. Loop over 'gameEvents' and log each element to the console, marking
-// whether it's in the first half or second half (after 45 min) of the game, like this:
+// // 4. Loop over 'gameEvents' and log each element to the console, marking
+// // whether it's in the first half or second half (after 45 min) of the game, like this:
 
-// [FIRST HALF] 17: ⚽ GOAL
-// GOOD LUCK �
+// // [FIRST HALF] 17: ⚽ GOAL
+// // GOOD LUCK �
 
-const gameEvents = new Map([
-  [17, '⚽ GOAL'],
-  [36, '� Substitution'],
-  [47, '⚽ GOAL'],
-  [61, '� Substitution'],
-  [64, '� Yellow card'],
-  [69, '� Red card'],
-  [70, '� Substitution'],
-  [72, '� Substitution'],
-  [76, '⚽ GOAL'],
-  [80, '⚽ GOAL'],
-  [92, '� Yellow card'],
-]);
+// const gameEvents = new Map([
+//   [17, '⚽ GOAL'],
+//   [36, '� Substitution'],
+//   [47, '⚽ GOAL'],
+//   [61, '� Substitution'],
+//   [64, '� Yellow card'],
+//   [69, '� Red card'],
+//   [70, '� Substitution'],
+//   [72, '� Substitution'],
+//   [76, '⚽ GOAL'],
+//   [80, '⚽ GOAL'],
+//   [92, '� Yellow card'],
+// ]);
 
-// 1
-console.log(gameEvents.values());
-const events = [...new Set(gameEvents.values())];
-console.log(events);
+// // 1
+// console.log(gameEvents.values());
+// const events = [...new Set(gameEvents.values())];
+// console.log(events);
 
-// 2
-gameEvents.delete(64);
-console.log(gameEvents);
+// // 2
+// gameEvents.delete(64);
+// console.log(gameEvents);
 
-// 3
-const time = [...gameEvents.keys()].pop(); //.pop to get the last element of array and return the deleted element
-console.log(time);
+// // 3
+// const time = [...gameEvents.keys()].pop(); //.pop to get the last element of array and return the deleted element
+// console.log(time);
 
-console.log(
-  `An event happened, on average, every ${time / gameEvents.size} minutes`
-);
+// console.log(
+//   `An event happened, on average, every ${time / gameEvents.size} minutes`
+// );
 
-// 4
-for (const [min, event] of gameEvents) {
-  const half = min <= 45 ? 'FIRST' : 'SECOND';
-  console.log(`${half} HALF ${min}: ${event}`);
-}
+// // 4
+// for (const [min, event] of gameEvents) {
+//   const half = min <= 45 ? 'FIRST' : 'SECOND';
+//   console.log(`${half} HALF ${min}: ${event}`);
+// }
+
+/////////////////////////////////////////////////////////////////////
+// Working With Strings - Part 1
+/////////////////////////////////////////////////////////////////////
+
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log('B737'[0]);
+
+console.log(airline.length);
+console.log('B737'.length);
+
+// So again comparing strings to arrays here,
+// strings also have methods
+// and some of them are quite similar to the array methods.
+// So one of them is the index off.
+console.log(airline.indexOf('r'));
+console.log(airline.lastIndexOf('r'));
+console.log(airline.indexOf('Portugal')); //case sensitive
+
+// All right now, what can we actually do with these indexes?
+// Why are they useful?
+// Well, one good use case is to extract part
+// of a string using the slice method
+// and a slice method needs indexes as arguments.
+// And so therefore sometimes it can be very useful
+// to first figure out the index of part of a string
+// to then extract that.
+// So let's see how the slice method works.
+
+// And this result that we get here,
+// so just this here is called a substring
+// because it's just a part of the original string.
+// Now this does not change the underlying string okay?
+// Just keep that in mind.
+// That's because it's actually impossible to mutate strings.
+// They are primitives, right?
+// So if we wanted to use this string
+// now we would have to store it first into some variable
+// or some data structure.
+
+// Okay, so this method here and all the other ones
+// that we're gonna talk about always return a new string.
+console.log(airline.slice(4));
+
+// Now, besides the begin parameter that we already specified,
+// we can also specify an end parameter.
+// So let's try seven and see the result.
+// And so now we only got air.
+// Okay so this one is four, then five, six
+// and seven is the space here.
+// And so what this means is that the end value
+// is actually not included in the string.
+// All right so basically it stops extracting
+// before reaching index number seven.
+// And that's really important to keep in mind.
+
+// And just as a side note,
+// the length of the extracted string
+// is always going to be end minus the beginning
+console.log(airline.slice(4, 7));
+
+// So that's the fundamentals of the slice method,
+console.log(airline.slice(0, airline.indexOf(' ')));
+console.log(airline.slice(airline.lastIndexOf(' ') + 1)); //plus 1 to remove the space
+
+// and then it will start counting from the end.
+// Or actually start extracting from the end.
+console.log(airline.slice(-2));
+
+console.log(airline.slice(1, -1));
+
+const checkMiddleSeat = function (seat) {
+  // B and E are middle seats
+  const s = seat.slice(-1);
+
+  if (s === 'B' || s === 'E') console.log('You got the middle seat 😥');
+  else console.log('You got lucky 😍');
+};
+
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
+
+// So we know that strings are just primitives.
+// So why do they have methods?
+// Shouldn't methods only be available
+// on objects such as a race?
+// Well that is actually true.
+// However, JavaScript is really smart.
+// And so here is how this works.
+// Whenever we call a method on a string,
+// JavaScript will automatically behind the scenes
+// convert that string primitive to a string object
+// with the same content.
+// And then it's on that object where the methods are called.
+
+// All right and this process is called boxing
+// because it basically takes our string
+// and puts it into a box
+// which is the object.
+// So basically what happens is this.
+// So what JavaScript does,
+// is to call this string function here.
+
+console.log(new String('Elmar'));
+console.log(typeof new String('Elmar'));
+
+console.log(typeof new String('Elmar').slice(1));
